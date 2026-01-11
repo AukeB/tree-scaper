@@ -1,5 +1,5 @@
 window:
-  name: "Graph"
+  name: "Tree visualization"
   width: 3840
   height: 2160
   background_color: [255, 255, 255]

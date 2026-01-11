@@ -1,7 +1,7 @@
 """Module for visualizing tree structures using PyGame."""
 
 import pygame as pg
-from src.tree_scaper.constants import Position, AUGMENTED_CONFIG_EXPORT_PATH
+from src.tree_scaper.constants import Position, AUGMENTED_DATA_EXPORT_PATH
 from src.tree_scaper.config_manager import ConfigModel
 from src.tree_scaper.utils import export_dict_to_json
 
@@ -446,7 +446,7 @@ class TreeVisualizer:
         root_position = Position(x=self.window_width // 2, y=self.window_height // 4)
         self._assign_positions(measured_tree, root_position)
 
-        export_dict_to_json(data=measured_tree, path=AUGMENTED_CONFIG_EXPORT_PATH)
+        export_dict_to_json(data=measured_tree, path=AUGMENTED_DATA_EXPORT_PATH)
 
         while True:
             self._handle_events()
