@@ -1,7 +1,7 @@
 [project]
 name = "tree-scaper"
 version = "0.1.0"
-description = "Repository with code for visualizing Forest/Tree structures using Python and PyGame."
+description = "Repository for visualizing tree and forest structures with hierarchical nodes and branches, featuring dynamic layouts, using Python and PyGame."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
