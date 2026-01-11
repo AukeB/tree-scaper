@@ -1,0 +1,139 @@
+{
+  "title": "Root",
+  "subtitle": "Root Info",
+  "branches": [
+    {
+      "title": "Branch 1",
+      "subtitle": "Branch Info 1",
+      "branches": [
+        {
+          "title": "Leaf 1A",
+          "subtitle": "Leaf Info A",
+          "branches": [],
+          "_measured": {
+            "width": 200,
+            "height": 86,
+            "subtree_width": 200,
+            "subtree_height": 86,
+            "position": [
+              1196,
+              812
+            ]
+          }
+        },
+        {
+          "title": "Leaf 1B",
+          "subtitle": "Leaf Info B",
+          "branches": [],
+          "_measured": {
+            "width": 200,
+            "height": 86,
+            "subtree_width": 200,
+            "subtree_height": 86,
+            "position": [
+              1446,
+              812
+            ]
+          }
+        }
+      ],
+      "_measured": {
+        "width": 200,
+        "height": 86,
+        "subtree_width": 450,
+        "subtree_height": 222,
+        "position": [
+          1321,
+          676
+        ]
+      }
+    },
+    {
+      "title": "Branch 2",
+      "subtitle": "Branch Info 2",
+      "branches": [
+        {
+          "title": "Leaf 2A",
+          "subtitle": "Leaf Info C",
+          "branches": [],
+          "_measured": {
+            "width": 200,
+            "height": 86,
+            "subtree_width": 200,
+            "subtree_height": 86,
+            "position": [
+              1696,
+              812
+            ]
+          }
+        },
+        {
+          "title": "Leaf 2B",
+          "subtitle": "Leaf Info D. Very long information. Even more information right here.",
+          "branches": [],
+          "_measured": {
+            "width": 649,
+            "height": 86,
+            "subtree_width": 649,
+            "subtree_height": 86,
+            "position": [
+              2170,
+              812
+            ]
+          }
+        }
+      ],
+      "_measured": {
+        "width": 200,
+        "height": 86,
+        "subtree_width": 899,
+        "subtree_height": 222,
+        "position": [
+          2045,
+          676
+        ]
+      }
+    },
+    {
+      "title": "Branch 3",
+      "subtitle": "Branch Info 3",
+      "branches": [
+        {
+          "title": "Leaf 3A",
+          "subtitle": "Leaf Info E",
+          "branches": [],
+          "_measured": {
+            "width": 200,
+            "height": 86,
+            "subtree_width": 200,
+            "subtree_height": 86,
+            "position": [
+              2645,
+              812
+            ]
+          }
+        }
+      ],
+      "_measured": {
+        "width": 200,
+        "height": 86,
+        "subtree_width": 200,
+        "subtree_height": 222,
+        "position": [
+          2645,
+          676
+        ]
+      }
+    }
+  ],
+  "_measured": {
+    "width": 200,
+    "height": 86,
+    "subtree_width": 1649,
+    "subtree_height": 358,
+    "position": [
+      1920,
+      540
+    ]
+  }
+}

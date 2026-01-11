@@ -1,0 +1,29 @@
+{
+  "title": "Root",
+  "subtitle": "Root Info",
+  "branches": [
+    {
+      "title": "Branch 1",
+      "subtitle": "Branch Info 1",
+      "branches": [
+        {"title": "Leaf 1A", "subtitle": "Leaf Info A", "branches": []},
+        {"title": "Leaf 1B", "subtitle": "Leaf Info B", "branches": []}
+      ]
+    },
+    {
+      "title": "Branch 2",
+      "subtitle": "Branch Info 2",
+      "branches": [
+        {"title": "Leaf 2A", "subtitle": "Leaf Info C", "branches": []},
+        {"title": "Leaf 2B", "subtitle": "Leaf Info D. Very long information. Even more information right here.", "branches": []}
+      ]
+    },
+    {
+      "title": "Branch 3",
+      "subtitle": "Branch Info 3",
+      "branches": [
+        {"title": "Leaf 3A", "subtitle": "Leaf Info E", "branches": []}
+      ]
+    }
+  ]
+}
