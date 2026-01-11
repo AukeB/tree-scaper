@@ -1,5 +1,5 @@
 # Default project folder
-PROJECT_NAME = src/my_project
+PROJECT_NAME = src/
 
 # Format and lint code with Ruff
 ruff:
@@ -19,19 +19,6 @@ mypy:
 		--ignore-missing-imports \
 		--follow-imports=skip
 	@echo "🔍 Successfully executed mypy."
-
-
-# Run tests with Pytest
-# -vvvs: Very verbose output, shows print() statements and extra test details
-# --cov=$(PROJECT_NAME): Measure test coverage for the project
-# --cov-report=term-missing: Show which lines are missing coverage
-# --cov-branch: Track branch coverage, not just line coverage
-pytest:
-	uv run pytest tests -vvvs \
-		--cov=$(PROJECT_NAME) \
-		--cov-report=term-missing \
-		--cov-branch
-	@echo "🧪 Successfully executed pytest."
 
 # Remove caches and temporary files
 clean:
@@ -53,11 +40,10 @@ git:
 	git push
 	@echo "📤 Successfully executed git."
 
-# Run full workflow: format, type-check, test, clean, commit
+# Run full workflow: format, type-check, clean, commit
 all:
 	make ruff
 	make mypy
-	make pytest
 	make clean
 	make git
 	@echo "⚡ Successfully executed all tasks."

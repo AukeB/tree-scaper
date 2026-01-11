@@ -1,18 +1,26 @@
-"""Module for running the main repository workflow."""
-
-import yaml
-
-from src.my_project.config_manager import ConfigManager
+"""Main module."""
 
 def main():
-    # Load configuration manager and settings.
-    manager = ConfigManager()
-    config = manager.load_config_file()
+    """Main function."""
+    # Imports
+    import json
+    from src.tree_scaper.config_manager import ConfigManager
+    from src.tree_scaper.tree_visualizer import TreeVisualizer
+    from src.tree_scaper.constants import DATA_PATH
 
-    print("Loaded config:")
-    print(yaml.safe_dump(config.model_dump(), sort_keys=False, default_flow_style=False))
+    # Load main configuration file
+    config_manager = ConfigManager()
+    config = config_manager.load_config_file()
 
+    # Load data.
+    with open(DATA_PATH, "r", encoding="utf-8") as file:
+        data = json.load(file)
 
+    # Initialize TreeVisualization class.
+    tree_visualizer = TreeVisualizer(data, config)
+
+    # Draw the tree.
+    tree_visualizer.draw()
 
 if __name__ == "__main__":
     main()

@@ -1,3 +1,3 @@
-# Template repository
+# Tree scaper
 
-This is template repository that can be used for starting other repositories.
+Repository with code for visualizing Forest/Tree structures using Python and PyGame.
