@@ -41,7 +41,6 @@ class ConfigModel(ConfiguredBaseModel):
         class NodeColors(ConfiguredBaseModel):
             """Color configuration for node rendering."""
 
-            background_color: list[int]
             text_color: list[int]
             levels: list[list[int]]
 

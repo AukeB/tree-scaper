@@ -32,7 +32,6 @@ class TreeVisualizer:
         self.node_padding_x = config.node.size.padding_x
         self.node_padding_y = config.node.size.padding_y
         self.border_thickness = config.node.size.border_thickness
-        self.background_color = config.node.colors.background_color
         self.text_color = config.node.colors.text_color
         self.color_levels = config.node.colors.levels
         self.font_name = config.node.font.name
