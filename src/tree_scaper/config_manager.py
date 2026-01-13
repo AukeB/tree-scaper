@@ -66,7 +66,8 @@ class ConfigModel(ConfiguredBaseModel):
 
 
 class ConfigManager:
-    """Load and parse application configuration files.
+    """
+    Load and parse application configuration files.
 
     This class is responsible for reading a configuration file from disk
     and converting it into a strongly typed ConfigModel instance that can
@@ -74,7 +75,8 @@ class ConfigManager:
     """
 
     def __init__(self, config_path: Path = CONFIG_PATH):
-        """Initialize the ConfigManager with a configuration file path.
+        """
+        Initialize the ConfigManager with a configuration file path.
 
         Args:
             config_path (Path): Path to the configuration YAML file.
@@ -82,7 +84,8 @@ class ConfigManager:
         self.config_path = config_path
 
     def load_config_file(self) -> ConfigModel:
-        """Load and validate the configuration file.
+        """
+        Load and validate the configuration file.
 
         This method reads the YAML configuration file from disk, parses its
         contents into a dictionary, and instantiates a ConfigModel from it.
