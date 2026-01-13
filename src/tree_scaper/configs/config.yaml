@@ -17,13 +17,15 @@ node:
     padding_x: 20
     padding_y: 10
   colors:
-    levels: [
-      [0, 53, 53],
-      [0, 76, 76],
-      [0, 162, 150],
-      [211, 211, 211],
-    ]
     background_color: [255, 255, 255]
+    text_color: [0, 0, 0]
+    levels: [
+      [20, 90, 20],
+      [30, 125, 40],
+      [60, 160, 70],
+      [120, 195, 110],
+      [180, 225, 170],
+    ]
   font:
     name: "Arial"
-    size: 20
+    size: 40

@@ -1,139 +1,287 @@
 {
   "title": "Root",
-  "subtitle": "Root Info",
-  "branches": [
-    {
-      "title": "Branch 1",
-      "subtitle": "Branch Info 1",
-      "branches": [
-        {
-          "title": "Leaf 1A",
-          "subtitle": "Leaf Info A",
-          "branches": [],
-          "_measured": {
-            "width": 200,
-            "height": 86,
-            "subtree_width": 200,
-            "subtree_height": 86,
-            "position": [
-              1196,
-              812
-            ]
-          }
-        },
-        {
-          "title": "Leaf 1B",
-          "subtitle": "Leaf Info B",
-          "branches": [],
-          "_measured": {
-            "width": 200,
-            "height": 86,
-            "subtree_width": 200,
-            "subtree_height": 86,
-            "position": [
-              1446,
-              812
-            ]
-          }
-        }
-      ],
-      "_measured": {
-        "width": 200,
-        "height": 86,
-        "subtree_width": 450,
-        "subtree_height": 222,
-        "position": [
-          1321,
-          676
-        ]
-      }
-    },
-    {
-      "title": "Branch 2",
-      "subtitle": "Branch Info 2",
-      "branches": [
-        {
-          "title": "Leaf 2A",
-          "subtitle": "Leaf Info C",
-          "branches": [],
-          "_measured": {
-            "width": 200,
-            "height": 86,
-            "subtree_width": 200,
-            "subtree_height": 86,
-            "position": [
-              1696,
-              812
-            ]
-          }
-        },
-        {
-          "title": "Leaf 2B",
-          "subtitle": "Leaf Info D. Very long information. Even more information right here.",
-          "branches": [],
-          "_measured": {
-            "width": 649,
-            "height": 86,
-            "subtree_width": 649,
-            "subtree_height": 86,
-            "position": [
-              2170,
-              812
-            ]
-          }
-        }
-      ],
-      "_measured": {
-        "width": 200,
-        "height": 86,
-        "subtree_width": 899,
-        "subtree_height": 222,
-        "position": [
-          2045,
-          676
-        ]
-      }
-    },
-    {
-      "title": "Branch 3",
-      "subtitle": "Branch Info 3",
-      "branches": [
-        {
-          "title": "Leaf 3A",
-          "subtitle": "Leaf Info E",
-          "branches": [],
-          "_measured": {
-            "width": 200,
-            "height": 86,
-            "subtree_width": 200,
-            "subtree_height": 86,
-            "position": [
-              2645,
-              812
-            ]
-          }
-        }
-      ],
-      "_measured": {
-        "width": 200,
-        "height": 86,
-        "subtree_width": 200,
-        "subtree_height": 222,
-        "position": [
-          2645,
-          676
-        ]
-      }
-    }
-  ],
+  "subtitle": "Level 0",
   "_measured": {
     "width": 200,
-    "height": 86,
-    "subtree_width": 1649,
-    "subtree_height": 358,
-    "position": [
-      1920,
-      540
-    ]
-  }
+    "height": 130,
+    "subtree_width": 3315,
+    "subtree_height": 850,
+    "position": [1920, 540]
+  },
+  "branches": [
+    {
+      "title": "Branch A",
+      "subtitle": "Level 1",
+      "_measured": {
+        "width": 201,
+        "height": 130,
+        "subtree_width": 2201,
+        "subtree_height": 670,
+        "position": [1363, 720]
+      },
+      "branches": [
+        {
+          "title": "Sub-Branch A1",
+          "subtitle": "Level 2",
+          "_measured": {
+            "width": 307,
+            "height": 130,
+            "subtree_width": 2201,
+            "subtree_height": 490,
+            "position": [1363, 900]
+          },
+          "branches": [
+            {
+              "title": "Twig A1a",
+              "subtitle": "Level 3",
+              "_measured": {
+                "width": 202,
+                "height": 130,
+                "subtree_width": 803,
+                "subtree_height": 310,
+                "position": [664, 1080]
+              },
+              "branches": [
+                {
+                  "title": "Leaf A1a-I",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 220,
+                    "height": 130,
+                    "subtree_width": 220,
+                    "subtree_height": 130,
+                    "position": [373, 1260]
+                  },
+                  "branches": []
+                },
+                {
+                  "title": "Leaf A1a-IV",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 247,
+                    "height": 130,
+                    "subtree_width": 247,
+                    "subtree_height": 130,
+                    "position": [656, 1260]
+                  },
+                  "branches": []
+                },
+                {
+                  "title": "Leaf A1a-V",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 236,
+                    "height": 130,
+                    "subtree_width": 236,
+                    "subtree_height": 130,
+                    "position": [948, 1260]
+                  },
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "title": "Twig A1b",
+              "subtitle": "Level 3",
+              "_measured": {
+                "width": 201,
+                "height": 130,
+                "subtree_width": 501,
+                "subtree_height": 310,
+                "position": [1366, 1080]
+              },
+              "branches": [
+                {
+                  "title": "Leaf A1b-I",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 220,
+                    "height": 130,
+                    "subtree_width": 220,
+                    "subtree_height": 130,
+                    "position": [1226, 1260]
+                  },
+                  "branches": []
+                },
+                {
+                  "title": "Leaf A1b-II",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 231,
+                    "height": 130,
+                    "subtree_width": 231,
+                    "subtree_height": 130,
+                    "position": [1501, 1260]
+                  },
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "title": "Twig A1c",
+              "subtitle": "Level 3",
+              "_measured": {
+                "width": 200,
+                "height": 130,
+                "subtree_width": 797,
+                "subtree_height": 310,
+                "position": [2065, 1080]
+              },
+              "branches": [
+                {
+                  "title": "Leaf A1c-I",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 218,
+                    "height": 130,
+                    "subtree_width": 218,
+                    "subtree_height": 130,
+                    "position": [1776, 1260]
+                  },
+                  "branches": []
+                },
+                {
+                  "title": "Leaf A1c-IV",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 245,
+                    "height": 130,
+                    "subtree_width": 245,
+                    "subtree_height": 130,
+                    "position": [2057, 1260]
+                  },
+                  "branches": []
+                },
+                {
+                  "title": "Leaf A1c-V",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 234,
+                    "height": 130,
+                    "subtree_width": 234,
+                    "subtree_height": 130,
+                    "position": [2347, 1260]
+                  },
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Branch B",
+      "subtitle": "Level 1",
+      "_measured": {
+        "width": 204,
+        "height": 130,
+        "subtree_width": 1064,
+        "subtree_height": 670,
+        "position": [3046, 720]
+      },
+      "branches": [
+        {
+          "title": "Sub-Branch B1",
+          "subtitle": "Level 2",
+          "_measured": {
+            "width": 310,
+            "height": 130,
+            "subtree_width": 507,
+            "subtree_height": 490,
+            "position": [2767, 900]
+          },
+          "branches": [
+            {
+              "title": "Twig B1a",
+              "subtitle": "Level 3",
+              "_measured": {
+                "width": 204,
+                "height": 130,
+                "subtree_width": 507,
+                "subtree_height": 310,
+                "position": [2767, 1080]
+              },
+              "branches": [
+                {
+                  "title": "Leaf B1a-I",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 223,
+                    "height": 130,
+                    "subtree_width": 223,
+                    "subtree_height": 130,
+                    "position": [2625, 1260]
+                  },
+                  "branches": []
+                },
+                {
+                  "title": "Leaf B1a-II",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 234,
+                    "height": 130,
+                    "subtree_width": 234,
+                    "subtree_height": 130,
+                    "position": [2904, 1260]
+                  },
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sub-Branch B2",
+          "subtitle": "Level 2",
+          "_measured": {
+            "width": 310,
+            "height": 130,
+            "subtree_width": 507,
+            "subtree_height": 490,
+            "position": [3324, 900]
+          },
+          "branches": [
+            {
+              "title": "Twig B2a",
+              "subtitle": "Level 3",
+              "_measured": {
+                "width": 204,
+                "height": 130,
+                "subtree_width": 507,
+                "subtree_height": 310,
+                "position": [3324, 1080]
+              },
+              "branches": [
+                {
+                  "title": "Leaf B2a-I",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 223,
+                    "height": 130,
+                    "subtree_width": 223,
+                    "subtree_height": 130,
+                    "position": [3182, 1260]
+                  },
+                  "branches": []
+                },
+                {
+                  "title": "Leaf B2a-II",
+                  "subtitle": "Level 4",
+                  "_measured": {
+                    "width": 234,
+                    "height": 130,
+                    "subtree_width": 234,
+                    "subtree_height": 130,
+                    "position": [3461, 1260]
+                  },
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

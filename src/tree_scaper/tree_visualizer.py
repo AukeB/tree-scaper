@@ -32,8 +32,9 @@ class TreeVisualizer:
         self.node_padding_x = config.node.size.padding_x
         self.node_padding_y = config.node.size.padding_y
         self.border_thickness = config.node.size.border_thickness
+        self.background_color = config.node.colors.background_color
+        self.text_color = config.node.colors.text_color
         self.color_levels = config.node.colors.levels
-        self.node_background_color = config.node.colors.background_color
         self.font_name = config.node.font.name
         self.font_size = config.node.font.size
 
@@ -165,6 +166,8 @@ class TreeVisualizer:
             )
 
             total_width += self.horizontal_spacing * (len(measured_branches) - 1)
+            total_width = max(total_width, node_width)
+
             total_height = (
                 node_height
                 + self.vertical_spacing
@@ -178,7 +181,8 @@ class TreeVisualizer:
             total_height = node_height
 
         measured_node = {
-            **node_data,
+            "title": node_data["title"],
+            "subtitle": node_data["subtitle"],
             "_measured": {
                 "width": node_width,
                 "height": node_height,
@@ -291,19 +295,20 @@ class TreeVisualizer:
         bottom_rect = pg.Rect(rect.left, rect.top + top_height, width, bottom_height)
 
         pg.draw.rect(self.screen, node_color, top_rect)
-        pg.draw.rect(self.screen, self.node_background_color, bottom_rect)
+        pg.draw.rect(self.screen, self.background_color, bottom_rect)
         pg.draw.rect(self.screen, node_color, rect, self.border_thickness)
 
         title_lines = node_data["title"].split("\n")
         subtitle_lines = node_data["subtitle"].split("\n")
 
         top_surfs = [
-            self.font_top.render(line, True, self.node_background_color)
+            self.font_top.render(line, True, self.background_color)
             for line in title_lines
         ]
 
         bottom_surfs = [
-            self.font_bottom.render(line, True, node_color) for line in subtitle_lines
+            self.font_bottom.render(line, True, self.text_color)
+            for line in subtitle_lines
         ]
 
         current_y = top_rect.top + self.node_padding_y
@@ -417,7 +422,7 @@ class TreeVisualizer:
             level (int): Depth level in the tree (0=root).
         """
         self._draw_node(measured_tree, level=level)
-        self._draw_connectors(measured_tree)
+        self._draw_connectors(measured_tree, level=level)
 
         for branch_node in measured_tree.get("branches", []):
             self._draw_tree(branch_node, level=level + 1)
