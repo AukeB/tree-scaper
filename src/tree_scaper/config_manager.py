@@ -96,4 +96,5 @@ class ConfigManager:
         """
         with open(self.config_path) as file:
             config = yaml.safe_load(file)
+
         return ConfigModel(**config)
