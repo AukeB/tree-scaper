@@ -47,12 +47,12 @@ TODO:
 - Refactoring                                                               
     - Kijken of alles naar 2 classes kan -> measuring & draw class          
     - Misschien nog meer                                                    
-- Compact mode                                                              
+- Compact mode                                                              <-- MET DEZE VERDERGAAN
     Misschien de v_stacks_leafs en compact_mode mergen en dan zeggen dat    
     v_stack_leafs compact_mode level 1 is en de compact_mode wordt          
     compact_model level 2.                                                  
 - Vertical alignment van dezelfde level nodes als er een node is            
-    met een groter aantal regels in de title of subtitle                    
+    met een groter aantal regels in de title of subtitle  ??                
 - CLI                                                                       
     - parameter in cli voor meegevben data_path naar .json file             
     - Andere runtime parameters toevoegen                                   
