@@ -12,17 +12,17 @@ window:
 
 font:
   size: 40
-  min_size: 6
+  min_size: 1
   name: "Arial"
 
 zoom:
   start_level: 1.0
-  min_level: 0.25
-  max_level: 4.0
-  zoom_factor: 1.12
+  min_level: 0.11 # Should be 0.11 when font.min_size is set to 1.
+  max_level: 6.0
+  zoom_factor: 1.08
 
 node_size:
-    min_width: 50
+    min_width: 0 # Can be removed entirely
     border_thickness: 5
     margin_x: 20
     margin_y: 10
