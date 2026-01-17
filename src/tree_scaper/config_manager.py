@@ -17,6 +17,14 @@ class ConfiguredBaseModel(BaseModel):
 class ConfigModel(ConfiguredBaseModel):
     """Root configuration model for the TreeVisualizer."""
 
+    class Runtime(ConfiguredBaseModel):
+        """Runtime behavior flags controlling visualization logic."""
+
+        v_stack_leafs: (
+            bool  # Stack leaf-only child nodes vertically instead of horizontally
+        )
+        align_v_stack: bool  # If ``v_stack_leafs`` set to True, than this parameter makes sure the entire stack has the same width.
+
     class Window(ConfiguredBaseModel):
         """Window configuration for the visualization canvas."""
 
@@ -31,10 +39,8 @@ class ConfigModel(ConfiguredBaseModel):
         class NodeSize(ConfiguredBaseModel):
             """Sizing and spacing configuration for a node."""
 
-            width: int
-            height: int
-            border_thickness: int
             min_width: int
+            border_thickness: int
             padding_x: int
             padding_y: int
 
@@ -60,6 +66,7 @@ class ConfigModel(ConfiguredBaseModel):
         horizontal_spacing: int
         vertical_spacing: int
 
+    runtime: Runtime
     window: Window
     node: Node
     layout: Layout

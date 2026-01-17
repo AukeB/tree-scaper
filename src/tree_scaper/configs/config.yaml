@@ -1,3 +1,7 @@
+runtime:
+  v_stack_leafs: True
+  align_v_stack: True
+  
 window:
   name: "Tree visualization"
   width: 3840
@@ -10,8 +14,6 @@ layout:
 
 node:
   size:
-    width: 400
-    height: 160
     border_thickness: 5
     min_width: 200
     padding_x: 20
@@ -30,13 +32,13 @@ node:
     # ]
 
     # Red
-    # levels: [
-    #     [90, 20, 20],
-    #     [125, 40, 40],
-    #     [160, 70, 70],
-    #     [195, 110, 110],
-    #     [225, 170, 170],
-    # ]
+    levels: [
+        [90, 20, 20],
+        [125, 40, 40],
+        [160, 70, 70],
+        [195, 110, 110],
+        [225, 170, 170],
+    ]
 
     # Blue
     # levels: [
@@ -57,13 +59,13 @@ node:
     # ]
 
     # Purple
-    levels: [
-      [90, 20, 90],
-      [125, 40, 125],
-      [160, 70, 160],
-      [195, 110, 195],
-      [225, 170, 225],
-    ]
+    # levels: [
+    #   [90, 20, 90],
+    #   [125, 40, 125],
+    #   [160, 70, 160],
+    #   [195, 110, 195],
+    #   [225, 170, 225],
+    # ]
   font:
     name: "Arial"
-    size: 40
+    size: 30
