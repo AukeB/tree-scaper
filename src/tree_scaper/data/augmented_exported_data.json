@@ -1,13 +1,13 @@
 {
-  "title": "Root\nRoot\nRoot\nRoot\nRoot",
+  "title": "Root",
   "subtitle": "Level 0",
   "_measured": {
     "width": 200,
-    "height": 244,
-    "top_height": 190,
+    "height": 108,
+    "top_height": 54,
     "bottom_height": 54,
-    "subtree_width": 1685,
-    "subtree_height": 1192,
+    "subtree_width": 1290,
+    "subtree_height": 1056,
     "position": [1920, 540],
     "leaves_only": false
   },
@@ -20,9 +20,9 @@
         "height": 108,
         "top_height": 54,
         "bottom_height": 54,
-        "subtree_width": 1095,
+        "subtree_width": 700,
         "subtree_height": 898,
-        "position": [1625, 766],
+        "position": [1625, 698],
         "leaves_only": false
       },
       "branches": [
@@ -34,23 +34,23 @@
             "height": 108,
             "top_height": 54,
             "bottom_height": 54,
-            "subtree_width": 1095,
+            "subtree_width": 700,
             "subtree_height": 740,
-            "position": [1625, 924],
+            "position": [1625, 856],
             "leaves_only": false
           },
           "branches": [
             {
-              "title": "Twig A1 dddddddddddddddddddddddddd",
+              "title": "Twig A1",
               "subtitle": "Level 3",
               "_measured": {
-                "width": 595,
+                "width": 200,
                 "height": 108,
                 "top_height": 54,
                 "bottom_height": 54,
-                "subtree_width": 595,
+                "subtree_width": 200,
                 "subtree_height": 582,
-                "position": [1375, 1082],
+                "position": [1375, 1014],
                 "leaves_only": true
               },
               "branches": [
@@ -58,13 +58,13 @@
                   "title": "Leaf A1a-I",
                   "subtitle": "Level 4",
                   "_measured": {
-                    "width": 595,
+                    "width": 200,
                     "height": 108,
                     "top_height": 54,
                     "bottom_height": 54,
-                    "subtree_width": 595,
+                    "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [1375, 1240],
+                    "position": [1375, 1172],
                     "leaves_only": false
                   },
                   "branches": []
@@ -73,13 +73,13 @@
                   "title": "Leaf A1a-IV",
                   "subtitle": "Level 4",
                   "_measured": {
-                    "width": 595,
+                    "width": 200,
                     "height": 108,
                     "top_height": 54,
                     "bottom_height": 54,
-                    "subtree_width": 595,
+                    "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [1375, 1398],
+                    "position": [1375, 1330],
                     "leaves_only": false
                   },
                   "branches": []
@@ -88,13 +88,13 @@
                   "title": "Leaf A1a-V",
                   "subtitle": "Level 4",
                   "_measured": {
-                    "width": 595,
+                    "width": 200,
                     "height": 108,
                     "top_height": 54,
                     "bottom_height": 54,
-                    "subtree_width": 595,
+                    "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [1375, 1556],
+                    "position": [1375, 1488],
                     "leaves_only": false
                   },
                   "branches": []
@@ -111,7 +111,7 @@
                 "bottom_height": 54,
                 "subtree_width": 200,
                 "subtree_height": 424,
-                "position": [1823, 1082],
+                "position": [1625, 1014],
                 "leaves_only": true
               },
               "branches": [
@@ -125,7 +125,7 @@
                     "bottom_height": 54,
                     "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [1823, 1240],
+                    "position": [1625, 1172],
                     "leaves_only": false
                   },
                   "branches": []
@@ -140,7 +140,7 @@
                     "bottom_height": 54,
                     "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [1823, 1398],
+                    "position": [1625, 1330],
                     "leaves_only": false
                   },
                   "branches": []
@@ -157,7 +157,7 @@
                 "bottom_height": 54,
                 "subtree_width": 200,
                 "subtree_height": 582,
-                "position": [2073, 1082],
+                "position": [1875, 1014],
                 "leaves_only": true
               },
               "branches": [
@@ -171,7 +171,7 @@
                     "bottom_height": 54,
                     "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [2073, 1240],
+                    "position": [1875, 1172],
                     "leaves_only": false
                   },
                   "branches": []
@@ -186,7 +186,7 @@
                     "bottom_height": 54,
                     "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [2073, 1398],
+                    "position": [1875, 1330],
                     "leaves_only": false
                   },
                   "branches": []
@@ -201,7 +201,7 @@
                     "bottom_height": 54,
                     "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [2073, 1556],
+                    "position": [1875, 1488],
                     "leaves_only": false
                   },
                   "branches": []
@@ -222,7 +222,7 @@
         "bottom_height": 54,
         "subtree_width": 540,
         "subtree_height": 740,
-        "position": [2493, 766],
+        "position": [2295, 698],
         "leaves_only": false
       },
       "branches": [
@@ -236,7 +236,7 @@
             "bottom_height": 54,
             "subtree_width": 245,
             "subtree_height": 582,
-            "position": [2345, 924],
+            "position": [2147, 856],
             "leaves_only": false
           },
           "branches": [
@@ -250,7 +250,7 @@
                 "bottom_height": 54,
                 "subtree_width": 200,
                 "subtree_height": 424,
-                "position": [2345, 1082],
+                "position": [2147, 1014],
                 "leaves_only": true
               },
               "branches": [
@@ -264,7 +264,7 @@
                     "bottom_height": 54,
                     "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [2345, 1240],
+                    "position": [2147, 1172],
                     "leaves_only": false
                   },
                   "branches": []
@@ -279,7 +279,7 @@
                     "bottom_height": 54,
                     "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [2345, 1398],
+                    "position": [2147, 1330],
                     "leaves_only": false
                   },
                   "branches": []
@@ -298,7 +298,7 @@
             "bottom_height": 54,
             "subtree_width": 245,
             "subtree_height": 582,
-            "position": [2640, 924],
+            "position": [2442, 856],
             "leaves_only": false
           },
           "branches": [
@@ -312,7 +312,7 @@
                 "bottom_height": 54,
                 "subtree_width": 200,
                 "subtree_height": 424,
-                "position": [2640, 1082],
+                "position": [2442, 1014],
                 "leaves_only": true
               },
               "branches": [
@@ -326,7 +326,7 @@
                     "bottom_height": 54,
                     "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [2640, 1240],
+                    "position": [2442, 1172],
                     "leaves_only": false
                   },
                   "branches": []
@@ -341,7 +341,7 @@
                     "bottom_height": 54,
                     "subtree_width": 200,
                     "subtree_height": 108,
-                    "position": [2640, 1398],
+                    "position": [2442, 1330],
                     "leaves_only": false
                   },
                   "branches": []
