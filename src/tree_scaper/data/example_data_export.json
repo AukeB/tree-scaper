@@ -8,7 +8,7 @@
     "bottom_height": 65,
     "subtree_width": 1543,
     "subtree_height": 1210,
-    "position": [2510, 463],
+    "position": [2510.0, 417.0],
     "leaves_only": false
   },
   "branches": [
@@ -22,7 +22,7 @@
         "bottom_height": 65,
         "subtree_width": 823,
         "subtree_height": 1030,
-        "position": [2150, 643],
+        "position": [2150.0, 597.0],
         "leaves_only": false
       },
       "branches": [
@@ -36,7 +36,7 @@
             "bottom_height": 65,
             "subtree_width": 823,
             "subtree_height": 850,
-            "position": [2150, 823],
+            "position": [2150.0, 777.0],
             "leaves_only": false
           },
           "branches": [
@@ -50,7 +50,7 @@
                 "bottom_height": 65,
                 "subtree_width": 247,
                 "subtree_height": 670,
-                "position": [1862, 1003],
+                "position": [1862.0, 957.0],
                 "leaves_only": true
               },
               "branches": [
@@ -64,7 +64,7 @@
                     "bottom_height": 65,
                     "subtree_width": 247,
                     "subtree_height": 130,
-                    "position": [1862, 1183],
+                    "position": [1862.0, 1137.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -79,7 +79,7 @@
                     "bottom_height": 65,
                     "subtree_width": 247,
                     "subtree_height": 130,
-                    "position": [1862, 1363],
+                    "position": [1862.0, 1317.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -94,7 +94,7 @@
                     "bottom_height": 65,
                     "subtree_width": 247,
                     "subtree_height": 130,
-                    "position": [1862, 1543],
+                    "position": [1862.0, 1497.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -111,7 +111,7 @@
                 "bottom_height": 65,
                 "subtree_width": 231,
                 "subtree_height": 490,
-                "position": [2151, 1003],
+                "position": [2151.0, 957.0],
                 "leaves_only": true
               },
               "branches": [
@@ -125,7 +125,7 @@
                     "bottom_height": 65,
                     "subtree_width": 231,
                     "subtree_height": 130,
-                    "position": [2151, 1183],
+                    "position": [2151.0, 1137.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -140,7 +140,7 @@
                     "bottom_height": 65,
                     "subtree_width": 231,
                     "subtree_height": 130,
-                    "position": [2151, 1363],
+                    "position": [2151.0, 1317.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -157,7 +157,7 @@
                 "bottom_height": 65,
                 "subtree_width": 245,
                 "subtree_height": 670,
-                "position": [2439, 1003],
+                "position": [2439.0, 957.0],
                 "leaves_only": true
               },
               "branches": [
@@ -171,7 +171,7 @@
                     "bottom_height": 65,
                     "subtree_width": 245,
                     "subtree_height": 130,
-                    "position": [2439, 1183],
+                    "position": [2439.0, 1137.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -186,7 +186,7 @@
                     "bottom_height": 65,
                     "subtree_width": 245,
                     "subtree_height": 130,
-                    "position": [2439, 1363],
+                    "position": [2439.0, 1317.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -201,7 +201,7 @@
                     "bottom_height": 65,
                     "subtree_width": 245,
                     "subtree_height": 130,
-                    "position": [2439, 1543],
+                    "position": [2439.0, 1497.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -222,7 +222,7 @@
         "bottom_height": 65,
         "subtree_width": 670,
         "subtree_height": 850,
-        "position": [2947, 643],
+        "position": [2947.0, 597.0],
         "leaves_only": false
       },
       "branches": [
@@ -236,7 +236,7 @@
             "bottom_height": 65,
             "subtree_width": 310,
             "subtree_height": 670,
-            "position": [2767, 823],
+            "position": [2767.0, 777.0],
             "leaves_only": false
           },
           "branches": [
@@ -250,7 +250,7 @@
                 "bottom_height": 65,
                 "subtree_width": 234,
                 "subtree_height": 490,
-                "position": [2767, 1003],
+                "position": [2767.0, 957.0],
                 "leaves_only": true
               },
               "branches": [
@@ -264,7 +264,7 @@
                     "bottom_height": 65,
                     "subtree_width": 234,
                     "subtree_height": 130,
-                    "position": [2767, 1183],
+                    "position": [2767.0, 1137.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -279,7 +279,7 @@
                     "bottom_height": 65,
                     "subtree_width": 234,
                     "subtree_height": 130,
-                    "position": [2767, 1363],
+                    "position": [2767.0, 1317.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -298,7 +298,7 @@
             "bottom_height": 65,
             "subtree_width": 310,
             "subtree_height": 670,
-            "position": [3127, 823],
+            "position": [3127.0, 777.0],
             "leaves_only": false
           },
           "branches": [
@@ -312,7 +312,7 @@
                 "bottom_height": 65,
                 "subtree_width": 234,
                 "subtree_height": 490,
-                "position": [3127, 1003],
+                "position": [3127.0, 957.0],
                 "leaves_only": true
               },
               "branches": [
@@ -326,7 +326,7 @@
                     "bottom_height": 65,
                     "subtree_width": 234,
                     "subtree_height": 130,
-                    "position": [3127, 1183],
+                    "position": [3127.0, 1137.0],
                     "leaves_only": false
                   },
                   "branches": []
@@ -341,7 +341,7 @@
                     "bottom_height": 65,
                     "subtree_width": 234,
                     "subtree_height": 130,
-                    "position": [3127, 1363],
+                    "position": [3127.0, 1317.0],
                     "leaves_only": false
                   },
                   "branches": []

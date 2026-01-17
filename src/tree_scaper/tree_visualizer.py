@@ -59,7 +59,6 @@ class TreeVisualizer:
         self.base_font_size = self.font_size
 
         # Node
-        self.node_min_width = self.config.node_size.min_width
         self.border_thickness = self.config.node_size.border_thickness
         self.node_margin_x = self.config.node_size.margin_x
         self.node_margin_y = self.config.node_size.margin_y
@@ -243,7 +242,7 @@ class TreeVisualizer:
         ]
 
         text_widths = [surf.get_width() for surf in top_surfs + bottom_surfs]
-        width = max(max(text_widths) + self.node_margin_x * 2, self.node_min_width)
+        width = max(text_widths) + self.node_margin_x * 2
 
         top_height = (
             sum(surf.get_height() for surf in top_surfs) + self.node_margin_y * 2

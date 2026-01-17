@@ -18,23 +18,24 @@ font:
 zoom:
   start_level: 1.0
   min_level: 0.11 # Should be 0.11 when font.min_size is set to 1.
-  max_level: 6.0
-  zoom_factor: 1.08
+  max_level: 6.0 # Empirically determined.
+  zoom_factor: 1.08 # Setting it to 1.08 means a single scroll will shring/enlarge the visuals with 8%.
 
 node_size:
-    min_width: 0 # Can be removed entirely
-    border_thickness: 5
-    margin_x: 20
-    margin_y: 10
+    border_thickness: 5 # Number of pixels.
+    margin_x: 20 # Number of pixels.
+    margin_y: 10 # Number of pixels.
 
 root_node_position:
   x: 0.5 # Ratio of window_width, measured from left to right.
   y: 0.15 # Ratio of window height, measured from top to bottom.
 
 layout:
-  horizontal_spacing: 50
-  vertical_spacing: 50
+  horizontal_spacing: 50 # Number of pixels.
+  vertical_spacing: 50 # Number of pixels.
 
+# All colors are defined with a list of three integers that represent the 
+# RGB value of the color.
 colors:
   white: [255, 255, 255]
   gray: [175, 175, 175]
@@ -91,16 +92,6 @@ color_palettes:
       - [180, 110,  20]
       - [220, 150,  50]
       - [245, 190, 110]
-
-    gold:
-      - [150, 110,  30]
-      - [205, 150,  50]
-      - [230, 185,  90]
-
-    mustard:
-      - [140, 110,  30]
-      - [190, 150,  50]
-      - [220, 185,  85]
 
     olive:
       - [120, 140,  40]

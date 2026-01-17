@@ -59,7 +59,6 @@ class ConfigModel(ConfiguredBaseModel):
     class NodeSize(ConfiguredBaseModel):
         """Sizing and spacing configuration for tree nodes."""
 
-        min_width: int
         border_thickness: int
         margin_x: int
         margin_y: int
@@ -103,8 +102,6 @@ class ConfigModel(ConfiguredBaseModel):
 
             yellow: list[list[int]]
             amber: list[list[int]]
-            gold: list[list[int]]
-            mustard: list[list[int]]
             olive: list[list[int]]
 
         light: LightPalettes

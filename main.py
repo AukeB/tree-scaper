@@ -31,6 +31,7 @@ if __name__ == "__main__":
     - Runtime parameters                                                        DONE
         - Dark/light mode -> self.dark_mode: bool = False                       DONE
             - color_palettes opsplitsen in light en dark color_palettes         DONE
+            - Wat meer verschillende dark mode color palettes                   
     - Laatste layer grijs                                                       DONE
         - Color palette's aanpassen (groter contrast)                           DONE
         - ColorPallete variabele in config                                      DONE
