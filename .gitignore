@@ -6,9 +6,9 @@ __pycache__/
 artifacts/
 
 # Data folder
-data/*
-!data/example_data.json
-!data/example_data_export.json
+src/tree_scaper/data/*
+!src/tree_scaper/data/example_data.json
+!src/tree_scaper/data/example_data_export.json
 
 # Virtual environments
 venv/
