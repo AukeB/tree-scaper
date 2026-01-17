@@ -52,6 +52,7 @@ class TreeVisualizer:
 
         # Initialize fonts
         pg.init()
+
         self.font_top = pg.font.SysFont(self.font_name, self.font_size)
         self.font_bottom = pg.font.SysFont(self.font_name, self.font_size)
 

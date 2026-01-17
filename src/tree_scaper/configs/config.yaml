@@ -4,8 +4,8 @@ runtime:
   
 window:
   name: "Tree visualization"
-  width: 3840
-  height: 2160
+  width: 5020
+  height: 2780
   background_color: [255, 255, 255]
   # background_color: [0, 0, 0]
 layout:
@@ -15,7 +15,7 @@ layout:
 node:
   size:
     border_thickness: 5
-    min_width: 200
+    min_width: 50
     padding_x: 20
     padding_y: 10
   colors:
@@ -68,4 +68,4 @@ node:
     # ]
   font:
     name: "Arial"
-    size: 30
+    size: 40
