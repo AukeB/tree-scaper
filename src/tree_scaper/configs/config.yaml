@@ -1,74 +1,70 @@
 runtime:
   v_stack_leafs: True
   align_v_stack: True
-  
+
 window:
   name: "Tree visualization"
   width: 5020
   height: 2780
-  background_color: [255, 255, 255]
-  # background_color: [0, 0, 0]
   scroll_speed_horizontal: 200
   scroll_speed_vertical: 100
+
+node_size:
+    min_width: 50
+    border_thickness: 5
+    margin_x: 20
+    margin_y: 10
+
+font:
+  size: 40
+  name: "Arial"
 
 layout:
   horizontal_spacing: 50
   vertical_spacing: 50
 
-node:
-  size:
-    border_thickness: 5
-    min_width: 50
-    padding_x: 20
-    padding_y: 10
-  colors:
-    text_color: [0, 0, 0]
-    # text_color: [255, 255, 255]
+colors:
+  white: [255, 255, 255]
+  gray: [175, 175, 175]
+  black: [0, 0, 0]
 
-    # Green
-    levels: [
-      [20, 90, 20],
-      [30, 125, 40],
-      [60, 160, 70],
-      [120, 195, 110],
-      [180, 225, 170],
-    ]
+color_palettes:
+  green:
+    - [30, 100, 30]
+    - [70, 160, 70]
+    - [140, 200, 140]
 
-    # Red
-    # levels: [
-    #     [90, 20, 20],
-    #     [125, 40, 40],
-    #     [160, 70, 70],
-    #     [195, 110, 110],
-    #     [225, 170, 170],
-    # ]
+  red:
+    - [100, 30, 30]
+    - [180, 70, 70]
+    - [230, 160, 160]
 
-    # Blue
-    # levels: [
-    #   [20, 20, 90],
-    #   [40, 40, 125],
-    #   [70, 70, 160],
-    #   [110, 110, 195],
-    #   [170, 170, 225],
-    # ]
+  blue:
+    - [30, 30, 100]
+    - [70, 70, 180]
+    - [160, 160, 230]
 
-    # Yellow
-    # levels: [
-    #   [200, 200, 20],
-    #   [220, 220, 40],
-    #   [240, 240, 70],
-    #   [250, 250, 110],
-    #   [255, 255, 170],
-    # ]
+  purple:
+    - [90, 30, 90]
+    - [160, 70, 160]
+    - [225, 160, 225]
+  
+  teal:
+    - [20, 90, 90]
+    - [60, 160, 160]
+    - [120, 210, 210]
 
-    # Purple
-    # levels: [
-    #   [90, 20, 90],
-    #   [125, 40, 125],
-    #   [160, 70, 160],
-    #   [195, 110, 195],
-    #   [225, 170, 225],
-    # ]
-  font:
-    name: "Arial"
-    size: 40
+  orange:
+    - [180, 90, 30]
+    - [220, 140, 60]
+    - [240, 180, 120]
+
+  brown:
+    - [100, 50, 20]
+    - [150, 90, 40]
+    - [200, 140, 70]
+
+  slate:
+    - [50, 50, 70]
+    - [90, 90, 120]
+    - [140, 140, 170]

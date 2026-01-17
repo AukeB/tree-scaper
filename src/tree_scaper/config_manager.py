@@ -20,10 +20,14 @@ class ConfigModel(ConfiguredBaseModel):
     class Runtime(ConfiguredBaseModel):
         """Runtime behavior flags controlling visualization logic."""
 
-        v_stack_leafs: (
-            bool  # Stack leaf-only child nodes vertically instead of horizontally
-        )
-        align_v_stack: bool  # If ``v_stack_leafs`` set to True, than this parameter makes sure the entire stack has the same width.
+        v_stack_leafs: bool
+        """Stack leaf-only child nodes vertically instead of horizontally."""
+
+        align_v_stack: bool
+        """
+        If ``v_stack_leafs`` is enabled, enforce equal widths for the entire
+        vertical leaf stack (including the parent node).
+        """
 
     class Window(ConfiguredBaseModel):
         """Window configuration for the visualization canvas."""
@@ -31,36 +35,22 @@ class ConfigModel(ConfiguredBaseModel):
         name: str
         width: int
         height: int
-        background_color: list[int]  # [R, G, B]
         scroll_speed_horizontal: int
         scroll_speed_vertical: int
 
-    class Node(ConfiguredBaseModel):
-        """Visual configuration for tree nodes."""
+    class NodeSize(ConfiguredBaseModel):
+        """Sizing and spacing configuration for tree nodes."""
 
-        class NodeSize(ConfiguredBaseModel):
-            """Sizing and spacing configuration for a node."""
+        min_width: int
+        border_thickness: int
+        margin_x: int
+        margin_y: int
 
-            min_width: int
-            border_thickness: int
-            padding_x: int
-            padding_y: int
+    class Font(ConfiguredBaseModel):
+        """Font configuration for node text."""
 
-        class NodeColors(ConfiguredBaseModel):
-            """Color configuration for node rendering."""
-
-            text_color: list[int]
-            levels: list[list[int]]
-
-        class NodeFont(ConfiguredBaseModel):
-            """Font configuration for node text."""
-
-            name: str
-            size: int
-
-        size: NodeSize
-        colors: NodeColors
-        font: NodeFont
+        name: str
+        size: int
 
     class Layout(ConfiguredBaseModel):
         """Layout configuration for tree spacing."""
@@ -68,10 +58,30 @@ class ConfigModel(ConfiguredBaseModel):
         horizontal_spacing: int
         vertical_spacing: int
 
+    class Colors(ConfiguredBaseModel):
+        """Basic color definitions used throughout the visualization."""
+
+        white: list[int]
+        gray: list[int]
+        black: list[int]
+
+    class ColorPalettes(ConfiguredBaseModel):
+        green: list[list[int]]
+        red: list[list[int]]
+        blue: list[list[int]]
+        purple: list[list[int]]
+        teal: list[list[int]]
+        orange: list[list[int]]
+        brown: list[list[int]]
+        slate: list[list[int]]
+
     runtime: Runtime
     window: Window
-    node: Node
+    node_size: NodeSize
+    font: Font
     layout: Layout
+    colors: Colors
+    color_palettes: ColorPalettes
 
 
 class ConfigManager:

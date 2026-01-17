@@ -15,54 +15,78 @@ class TreeVisualizer:
 
         Args:
             data (dict): The hierarchical data to visualize.
-            config (ConfigModel): Pydantic config containing display and node
-                properties.
+            config (ConfigModel): Pydantic config containing display, node,
+                layout, and color properties.
         """
         # Data
         self.data = data
+        self.max_depth: int = self._get_max_depth(self.data)
 
-        # Runtime/behaviour properties
+        # Runtime / behavior
         self.v_stack_leafs = config.runtime.v_stack_leafs
         self.align_v_stack = config.runtime.align_v_stack
 
-        # Window properties
+        # Window
         self.window_name = config.window.name
         self.window_width = config.window.width
         self.window_height = config.window.height
-        self.background_color = tuple(config.window.background_color)
         self.scroll_speed_horizontal = config.window.scroll_speed_horizontal
         self.scroll_speed_vertical = config.window.scroll_speed_vertical
         self.scroll_x, self.scroll_y = 0, 0
 
-        # Node properties
-        self.node_min_width = config.node.size.min_width
-        self.border_thickness = config.node.size.border_thickness
-        self.node_padding_x = config.node.size.padding_x
-        self.node_padding_y = config.node.size.padding_y
-        self.text_color = config.node.colors.text_color
-        self.color_levels = config.node.colors.levels
-        self.font_name = config.node.font.name
-        self.font_size = config.node.font.size
+        # Node
+        self.node_min_width = config.node_size.min_width
+        self.border_thickness = config.node_size.border_thickness
+        self.node_margin_x = config.node_size.margin_x
+        self.node_margin_y = config.node_size.margin_y
 
-        # Layout properties
+        # Font
+        self.font_name = config.font.name
+        self.font_size = config.font.size
+
+        # Layout
         self.horizontal_spacing = config.layout.horizontal_spacing
         self.vertical_spacing = config.layout.vertical_spacing
 
-        # Related to scrolling within the PyGame window.
+        # Colors
+        self.text_color = config.colors.black
+        self.background_color = config.colors.white
+        self.leaf_background_color = config.colors.gray
+        self.color_levels = config.color_palettes.green
 
-        # Other
+        # File export
         self.data_export_file_path = DATA_PATH.with_name(
             DATA_PATH.stem + "_export" + DATA_PATH.suffix
         )
 
-        # Initialize fonts
+        # Initialize PyGame
         pg.init()
-
         self.font_top = pg.font.SysFont(self.font_name, self.font_size)
         self.font_bottom = pg.font.SysFont(self.font_name, self.font_size)
 
         # Initialize window
         self.screen = self._init_pg_window()
+
+    def _get_max_depth(self, node: dict, level: int = 0) -> int:
+        """
+        Recursively compute the maximum depth of a tree.
+
+        The root node is considered level 0. Each recursive descent into
+        a child branch increases the level by 1.
+
+        Args:
+            node (dict): Current node in the tree.
+            level (int): Current depth level.
+
+        Returns:
+            int: Maximum depth found in this subtree.
+        """
+        branches = node.get("branches", [])
+
+        if not branches:
+            return level
+
+        return max(self._get_max_depth(child, level + 1) for child in branches)
 
     def _init_pg_window(self) -> pg.Surface:
         """
@@ -129,14 +153,14 @@ class TreeVisualizer:
         ]
 
         text_widths = [surf.get_width() for surf in top_surfs + bottom_surfs]
-        width = max(max(text_widths) + self.node_padding_x * 2, self.node_min_width)
+        width = max(max(text_widths) + self.node_margin_x * 2, self.node_min_width)
 
         top_height = (
-            sum(surf.get_height() for surf in top_surfs) + self.node_padding_y * 2
+            sum(surf.get_height() for surf in top_surfs) + self.node_margin_y * 2
         )
 
         bottom_height = (
-            sum(surf.get_height() for surf in bottom_surfs) + self.node_padding_y * 2
+            sum(surf.get_height() for surf in bottom_surfs) + self.node_margin_y * 2
         )
 
         height = top_height + bottom_height
@@ -376,7 +400,7 @@ class TreeVisualizer:
                 )
                 current_x += branch_node_w + self.horizontal_spacing
 
-    def _draw_node(self, node_data: dict, level: int = 0) -> None:
+    def _draw_node(self, node_data: dict, node_color: list[int]) -> None:
         """
         Render a single node using its precomputed layout data.
 
@@ -406,10 +430,9 @@ class TreeVisualizer:
         x, y = node_data["_measured"]["position"]
         x += self.scroll_x
         y += self.scroll_y
+
         width = node_data["_measured"]["width"]
         height = node_data["_measured"]["height"]
-        color_idx = min(level, len(self.color_levels) - 1)
-        node_color = self.color_levels[color_idx]
 
         rect = pg.Rect(x - width // 2, y - height // 2, width, height)
         top_height = node_data["_measured"]["top_height"]
@@ -434,19 +457,19 @@ class TreeVisualizer:
             for line in subtitle_lines
         ]
 
-        current_y = top_rect.top + self.node_padding_y
+        current_y = top_rect.top + self.node_margin_y
         for surf in top_surfs:
             text_rect = surf.get_rect(center=(x, current_y + surf.get_height() // 2))
             self.screen.blit(surf, text_rect)
             current_y += surf.get_height()
 
-        current_y = bottom_rect.top + self.node_padding_y
+        current_y = bottom_rect.top + self.node_margin_y
         for surf in bottom_surfs:
             text_rect = surf.get_rect(center=(x, current_y + surf.get_height() // 2))
             self.screen.blit(surf, text_rect)
             current_y += surf.get_height()
 
-    def _draw_connectors(self, measured_tree: dict, level: int = 0) -> None:
+    def _draw_connectors(self, measured_tree: dict, node_color: list[int]) -> None:
         """
         Draw orthogonal connector lines between a node and its branches.
 
@@ -472,8 +495,6 @@ class TreeVisualizer:
                 dimension data for the parent and all direct branches.
         """
         branches = measured_tree.get("branches", [])
-        color_idx = min(level, len(self.color_levels) - 1)
-        node_color = self.color_levels[color_idx]
 
         if not branches:
             return
@@ -481,10 +502,10 @@ class TreeVisualizer:
         if measured_tree["_measured"]["leaves_only"]:
             return
 
+        height = measured_tree["_measured"]["height"]
         x, y = measured_tree["_measured"]["position"]
         x += self.scroll_x
         y += self.scroll_y
-        height = measured_tree["_measured"]["height"]
 
         parent_x = x
         parent_y = y + height // 2
@@ -549,8 +570,14 @@ class TreeVisualizer:
                 and position metadata for every node.
             level (int): Depth level in the tree (0=root).
         """
-        self._draw_node(measured_tree, level=level)
-        self._draw_connectors(measured_tree, level=level)
+        if level == self.max_depth:
+            node_color = self.leaf_background_color
+        else:
+            color_idx = min(level, len(self.color_levels) - 1)
+            node_color = self.color_levels[color_idx]
+
+        self._draw_node(measured_tree, node_color)
+        self._draw_connectors(measured_tree, node_color)
 
         for branch_node in measured_tree.get("branches", []):
             self._draw_tree(branch_node, level=level + 1)

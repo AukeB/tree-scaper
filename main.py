@@ -24,3 +24,22 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+    """
+    TODO:
+    - Runtime parameters                                                        
+        - Dark/light mode -> self.dark_mode: bool = False                       
+            - color_palettes opsplitsen in light en dark color_palettes         
+    - Laatste layer grijs                                                       DONE
+        - Color palette's aanpassen (groter contrast)                           DONE
+        - ColorPallete variabele in config                                      DONE
+        - Aantal paletten uitbreiden                                            DONE
+    - Kijken waar de groootte van nodes van afhangt                             
+        - inzoomen/uitzoomen implementeren
+    - Refactoring
+        - Kijken of alles naar 2 classes kan -> measuring & draw class
+        - Misschien nog meer
+    - Compact mode
+    
+    """
