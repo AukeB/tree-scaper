@@ -1,7 +1,7 @@
 """Module for visualizing tree structures using PyGame."""
 
 import pygame as pg
-from src.tree_scaper.constants import Position, AUGMENTED_DATA_EXPORT_PATH
+from src.tree_scaper.constants import Position, DATA_PATH
 from src.tree_scaper.config_manager import ConfigModel
 from src.tree_scaper.utils import export_dict_to_json
 
@@ -44,6 +44,11 @@ class TreeVisualizer:
         # Layout properties
         self.horizontal_spacing = config.layout.horizontal_spacing
         self.vertical_spacing = config.layout.vertical_spacing
+
+        # Other
+        self.data_export_file_path = DATA_PATH.with_name(
+            DATA_PATH.stem + "_export" + DATA_PATH.suffix
+        )
 
         # Initialize fonts
         pg.init()
@@ -561,7 +566,7 @@ class TreeVisualizer:
         root_position = Position(x=self.window_width // 2, y=self.window_height // 4)
         self._assign_positions(measured_tree, root_position)
 
-        export_dict_to_json(data=measured_tree, path=AUGMENTED_DATA_EXPORT_PATH)
+        export_dict_to_json(data=measured_tree, path=self.data_export_file_path)
 
         while True:
             self._handle_events()

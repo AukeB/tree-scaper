@@ -3,8 +3,12 @@ __pycache__/
 .vscode/
 .ruff_cache/
 .ipynb_checkpoints/
-# data/ # Deliberately uncomment the data folder for this repository.
 artifacts/
+
+# Data folder
+data/*
+!data/example_data.json
+!data/example_data_export.json
 
 # Virtual environments
 venv/
