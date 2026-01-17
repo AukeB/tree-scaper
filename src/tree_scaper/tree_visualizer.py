@@ -579,7 +579,7 @@ class TreeVisualizer:
         if self.v_stack_leafs and self.align_v_stack:
             self._apply_vstack_alignment(measured_tree)
 
-        root_position = Position(x=self.window_width // 2, y=self.window_height // 4)
+        root_position = Position(x=self.window_width // 2, y=self.window_height // 6)
         self._assign_positions(measured_tree, root_position)
 
         export_dict_to_json(data=measured_tree, path=self.data_export_file_path)
