@@ -673,21 +673,21 @@ class TreeVisualizer:
 
     def draw(self) -> None:
         """
-                Run the complete visualization pipeline and render loop.
-        f
-                This method orchestrates the full rendering process from raw input
-                data to on-screen visualization. It performs the following steps:
+        Run the complete visualization pipeline and render loop.
 
-                1. Measure the entire tree to determine node and subtree sizes.
-                2. Assign screen positions to all nodes based on measured sizes.
-                3. Enter the main render loop:
-                   - Handle window and quit events.
-                   - Clear the screen using the background color.
-                   - Draw the entire tree using precomputed layout data.
-                   - Update the display.
+        This method orchestrates the full rendering process from raw input
+        data to on-screen visualization. It performs the following steps:
 
-                The measurement and positioning phases are executed once, while
-                drawing is repeated every frame.
+        1. Measure the entire tree to determine node and subtree sizes.
+        2. Assign screen positions to all nodes based on measured sizes.
+        3. Enter the main render loop:
+            - Handle window and quit events.
+            - Clear the screen using the background color.
+            - Draw the entire tree using precomputed layout data.
+            - Update the display.
+
+        The measurement and positioning phases are executed once, while
+        drawing is repeated every frame.
         """
         self._update_tree_layout()
         export_dict_to_json(data=self.measured_tree, path=self.data_export_file_path)
