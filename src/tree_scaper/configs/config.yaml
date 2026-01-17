@@ -27,7 +27,7 @@ node_size:
     margin_y: 10 # Number of pixels.
 
 root_node_position:
-  x: 0.5 # Ratio of window_width, measured from left to right.
+  x: 0.5 # Ratio of window width, measured from left to right.
   y: 0.15 # Ratio of window height, measured from top to bottom.
 
 layout:
