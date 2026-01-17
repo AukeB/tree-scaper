@@ -8,6 +8,9 @@ window:
   height: 2780
   background_color: [255, 255, 255]
   # background_color: [0, 0, 0]
+  scroll_speed_horizontal: 200
+  scroll_speed_vertical: 100
+
 layout:
   horizontal_spacing: 50
   vertical_spacing: 50

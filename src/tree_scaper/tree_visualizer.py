@@ -30,6 +30,9 @@ class TreeVisualizer:
         self.window_width = config.window.width
         self.window_height = config.window.height
         self.background_color = tuple(config.window.background_color)
+        self.scroll_speed_horizontal = config.window.scroll_speed_horizontal
+        self.scroll_speed_vertical = config.window.scroll_speed_vertical
+        self.scroll_x, self.scroll_y = 0, 0
 
         # Node properties
         self.node_min_width = config.node.size.min_width
@@ -44,6 +47,8 @@ class TreeVisualizer:
         # Layout properties
         self.horizontal_spacing = config.layout.horizontal_spacing
         self.vertical_spacing = config.layout.vertical_spacing
+
+        # Related to scrolling within the PyGame window.
 
         # Other
         self.data_export_file_path = DATA_PATH.with_name(
@@ -80,6 +85,12 @@ class TreeVisualizer:
             if event.type == pg.QUIT:
                 pg.quit()
                 raise SystemExit
+            elif event.type == pg.MOUSEWHEEL:
+                mods = pg.key.get_mods()
+                if mods & pg.KMOD_SHIFT:
+                    self.scroll_x += event.y * self.scroll_speed_horizontal
+                else:
+                    self.scroll_y += event.y * self.scroll_speed_vertical
 
     def _measure_node(self, node_data: dict) -> tuple[int, int, int, int]:
         """
@@ -393,6 +404,8 @@ class TreeVisualizer:
                 data and text fields to render.
         """
         x, y = node_data["_measured"]["position"]
+        x += self.scroll_x
+        y += self.scroll_y
         width = node_data["_measured"]["width"]
         height = node_data["_measured"]["height"]
         color_idx = min(level, len(self.color_levels) - 1)
@@ -469,6 +482,8 @@ class TreeVisualizer:
             return
 
         x, y = measured_tree["_measured"]["position"]
+        x += self.scroll_x
+        y += self.scroll_y
         height = measured_tree["_measured"]["height"]
 
         parent_x = x
@@ -478,7 +493,7 @@ class TreeVisualizer:
         for branch in branches:
             bx, by = branch["_measured"]["position"]
             bh = branch["_measured"]["height"]
-            child_points.append((bx, by - bh // 2))
+            child_points.append((bx + self.scroll_x, by + self.scroll_y - bh // 2))
 
         junction_y = parent_y + self.vertical_spacing // 2
 

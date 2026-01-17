@@ -32,6 +32,8 @@ class ConfigModel(ConfiguredBaseModel):
         width: int
         height: int
         background_color: list[int]  # [R, G, B]
+        scroll_speed_horizontal: int
+        scroll_speed_vertical: int
 
     class Node(ConfiguredBaseModel):
         """Visual configuration for tree nodes."""
