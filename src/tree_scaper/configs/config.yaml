@@ -1,13 +1,25 @@
-runtime:
+runtime: # See src/tree_scaper/config_manager for the runtime parameter explanations.
   v_stack_leafs: True
   align_v_stack: True
+  dark_mode: True
 
 window:
   name: "Tree visualization"
-  width: 5020
-  height: 2780
-  scroll_speed_horizontal: 200
-  scroll_speed_vertical: 100
+  width: 5020 # Number of pixels.
+  height: 2780 # Number of pixels.
+  scroll_speed_horizontal: 200 # Number of pixels moved with a single scroll.
+  scroll_speed_vertical: 100 # Number of pixels moved with a single scroll.
+
+font:
+  size: 40
+  min_size: 6
+  name: "Arial"
+
+zoom:
+  start_level: 1.0
+  min_level: 0.25
+  max_level: 4.0
+  zoom_factor: 1.12
 
 node_size:
     min_width: 50
@@ -15,9 +27,9 @@ node_size:
     margin_x: 20
     margin_y: 10
 
-font:
-  size: 40
-  name: "Arial"
+root_node_position:
+  x: 0.5 # Ratio of window_width, measured from left to right.
+  y: 0.15 # Ratio of window height, measured from top to bottom.
 
 layout:
   horizontal_spacing: 50
@@ -29,42 +41,68 @@ colors:
   black: [0, 0, 0]
 
 color_palettes:
-  green:
-    - [30, 100, 30]
-    - [70, 160, 70]
-    - [140, 200, 140]
+  light:
+    green:
+      - [30, 100, 30]
+      - [70, 160, 70]
+      - [140, 200, 140]
 
-  red:
-    - [100, 30, 30]
-    - [180, 70, 70]
-    - [230, 160, 160]
+    red:
+      - [100, 30, 30]
+      - [180, 70, 70]
+      - [230, 160, 160]
 
-  blue:
-    - [30, 30, 100]
-    - [70, 70, 180]
-    - [160, 160, 230]
+    blue:
+      - [30, 30, 100]
+      - [70, 70, 180]
+      - [160, 160, 230]
 
-  purple:
-    - [90, 30, 90]
-    - [160, 70, 160]
-    - [225, 160, 225]
-  
-  teal:
-    - [20, 90, 90]
-    - [60, 160, 160]
-    - [120, 210, 210]
+    purple:
+      - [90, 30, 90]
+      - [160, 70, 160]
+      - [225, 160, 225]
+    
+    teal:
+      - [20, 90, 90]
+      - [60, 160, 160]
+      - [120, 210, 210]
 
-  orange:
-    - [180, 90, 30]
-    - [220, 140, 60]
-    - [240, 180, 120]
+    orange:
+      - [180, 90, 30]
+      - [220, 140, 60]
+      - [240, 180, 120]
 
-  brown:
-    - [100, 50, 20]
-    - [150, 90, 40]
-    - [200, 140, 70]
+    brown:
+      - [100, 50, 20]
+      - [150, 90, 40]
+      - [200, 140, 70]
 
-  slate:
-    - [50, 50, 70]
-    - [90, 90, 120]
-    - [140, 140, 170]
+    slate:
+      - [50, 50, 70]
+      - [90, 90, 120]
+      - [140, 140, 170]
+  dark:
+    yellow:
+      - [160, 120,  20]
+      - [200, 150,  40]
+      - [235, 190,  80]
+
+    amber:
+      - [180, 110,  20]
+      - [220, 150,  50]
+      - [245, 190, 110]
+
+    gold:
+      - [150, 110,  30]
+      - [205, 150,  50]
+      - [230, 185,  90]
+
+    mustard:
+      - [140, 110,  30]
+      - [190, 150,  50]
+      - [220, 185,  85]
+
+    olive:
+      - [120, 140,  40]
+      - [150, 170,  60]
+      - [190, 210, 100]

@@ -9,7 +9,7 @@ from src.tree_scaper.utils import export_dict_to_json
 class TreeVisualizer:
     """Visualizes hierarchical tree structures using PyGame."""
 
-    def __init__(self, data: dict, config: ConfigModel) -> None:
+    def __init__(self, tree_data: dict, config: ConfigModel) -> None:
         """
         Initializes the TreeVisualizer with data and configuration.
 
@@ -18,41 +18,68 @@ class TreeVisualizer:
             config (ConfigModel): Pydantic config containing display, node,
                 layout, and color properties.
         """
+        # Refactor.
+        # Maybe extract the parameters that are used a lot throughout the code
+        # and the variables that are only used once, do not create class variables
+        # for those but when used used them from the self.config variable.
+
+        # Config
+        self.config = config
+
         # Data
-        self.data = data
-        self.max_depth: int = self._get_max_depth(self.data)
+        self.tree = tree_data
+        self.measured_tree: dict
+        self.max_depth: int = self._get_max_depth(self.tree)
 
         # Runtime / behavior
-        self.v_stack_leafs = config.runtime.v_stack_leafs
-        self.align_v_stack = config.runtime.align_v_stack
+        self.v_stack_leafs = self.config.runtime.v_stack_leafs
+        self.align_v_stack = self.config.runtime.align_v_stack
+        self.dark_mode = self.config.runtime.dark_mode
 
         # Window
-        self.window_name = config.window.name
-        self.window_width = config.window.width
-        self.window_height = config.window.height
-        self.scroll_speed_horizontal = config.window.scroll_speed_horizontal
-        self.scroll_speed_vertical = config.window.scroll_speed_vertical
+        self.window_name = self.config.window.name
+        self.window_width = self.config.window.width
+        self.window_height = self.config.window.height
+        self.scroll_speed_horizontal = self.config.window.scroll_speed_horizontal
+        self.scroll_speed_vertical = self.config.window.scroll_speed_vertical
         self.scroll_x, self.scroll_y = 0, 0
 
-        # Node
-        self.node_min_width = config.node_size.min_width
-        self.border_thickness = config.node_size.border_thickness
-        self.node_margin_x = config.node_size.margin_x
-        self.node_margin_y = config.node_size.margin_y
-
         # Font
-        self.font_name = config.font.name
-        self.font_size = config.font.size
+        self.font_size = self.config.font.size
+        self.min_font_size = self.config.font.min_size
+        self.font_name = self.config.font.name
+
+        # Zoom
+        self.zoom = self.config.zoom.start_level
+        self.min_zoom, self.max_zoom = (
+            self.config.zoom.min_level,
+            self.config.zoom.max_level,
+        )
+        self.zoom_factor = self.config.zoom.zoom_factor
+        self.base_font_size = self.font_size
+
+        # Node
+        self.node_min_width = self.config.node_size.min_width
+        self.border_thickness = self.config.node_size.border_thickness
+        self.node_margin_x = self.config.node_size.margin_x
+        self.node_margin_y = self.config.node_size.margin_y
+
+        # Root node position
+        self.root_node_position = Position(
+            x=self.config.root_node_position.x * self.window_width,
+            y=self.config.root_node_position.y * self.window_height,
+        )
 
         # Layout
-        self.horizontal_spacing = config.layout.horizontal_spacing
-        self.vertical_spacing = config.layout.vertical_spacing
+        self.horizontal_spacing = self.config.layout.horizontal_spacing
+        self.vertical_spacing = self.config.layout.vertical_spacing
 
         # Colors
-        self.text_color = config.colors.black
-        self.background_color = config.colors.white
-        self.leaf_background_color = config.colors.gray
-        self.color_levels = config.color_palettes.green
+        self.text_color: list[int]
+        self.background_color: list[int]
+        self.leaf_background_color: list[int]
+        self.color_levels: list[list[int]]
+        self._set_colors()
 
         # File export
         self.data_export_file_path = DATA_PATH.with_name(
@@ -61,8 +88,11 @@ class TreeVisualizer:
 
         # Initialize PyGame
         pg.init()
-        self.font_top = pg.font.SysFont(self.font_name, self.font_size)
-        self.font_bottom = pg.font.SysFont(self.font_name, self.font_size)
+
+        # Create and set fonts.
+        self.font_top: pg.font.Font
+        self.font_bottom: pg.font.Font
+        self._update_zoom_parameters()
 
         # Initialize window
         self.screen = self._init_pg_window()
@@ -88,6 +118,37 @@ class TreeVisualizer:
 
         return max(self._get_max_depth(child, level + 1) for child in branches)
 
+    def _set_colors(self) -> None:
+        """ """
+        if not self.dark_mode:
+            self.text_color = self.config.colors.black
+            self.background_color = self.config.colors.white
+            self.leaf_background_color = self.config.colors.gray
+            self.color_levels = self.config.color_palettes.light.green
+        else:
+            self.text_color = self.config.colors.white
+            self.background_color = self.config.colors.black
+            self.leaf_background_color = self.config.colors.gray
+            self.color_levels = self.config.color_palettes.dark.yellow
+
+    def _update_zoom_parameters(self) -> None:
+        """Update zoom-dependent parameters like fonts and node metrics."""
+        scaled_size = max(self.min_font_size, int(self.base_font_size * self.zoom))
+        self.font_top = pg.font.SysFont(self.font_name, scaled_size)
+        self.font_bottom = pg.font.SysFont(self.font_name, scaled_size)
+
+        self.node_margin_x = max(1, int(self.config.node_size.margin_x * self.zoom))
+        self.node_margin_y = max(1, int(self.config.node_size.margin_y * self.zoom))
+        self.horizontal_spacing = max(
+            1, int(self.config.layout.horizontal_spacing * self.zoom)
+        )
+        self.vertical_spacing = max(
+            1, int(self.config.layout.vertical_spacing * self.zoom)
+        )
+        self.border_thickness = max(
+            1, int(self.config.node_size.border_thickness * self.zoom)
+        )
+
     def _init_pg_window(self) -> pg.Surface:
         """
         Initializes the PyGame display window.
@@ -100,6 +161,26 @@ class TreeVisualizer:
 
         return screen
 
+    def _update_tree_layout(self) -> None:
+        """Measure, align, and assign positions for the current tree."""
+        self.measured_tree = self._measure_tree(self.tree)
+
+        if self.v_stack_leafs and self.align_v_stack:
+            self._apply_vstack_alignment(self.measured_tree)
+
+        self._assign_positions(self.measured_tree, self.root_node_position)
+
+    def _set_zoom(self, new_zoom: float) -> None:
+        """Clamp zoom, update fonts, and update tree layout."""
+        new_zoom = max(self.min_zoom, min(self.max_zoom, new_zoom))
+
+        if abs(new_zoom - self.zoom) < 1e-3:
+            return
+
+        self.zoom = new_zoom
+        self._update_zoom_parameters()
+        self._update_tree_layout()
+
     def _handle_events(self) -> None:
         """
         Handles pygame events, including quitting the application.
@@ -111,8 +192,17 @@ class TreeVisualizer:
                 raise SystemExit
             elif event.type == pg.MOUSEWHEEL:
                 mods = pg.key.get_mods()
-                if mods & pg.KMOD_SHIFT:
+
+                # Zooming in and out.
+                if mods & pg.KMOD_CTRL:
+                    factor = self.zoom_factor**event.y
+                    self._set_zoom(self.zoom * factor)
+
+                # Horizontal scrolling.
+                elif mods & pg.KMOD_SHIFT:
                     self.scroll_x += event.y * self.scroll_speed_horizontal
+
+                # Vertical scrolling.
                 else:
                     self.scroll_y += event.y * self.scroll_speed_vertical
 
@@ -584,35 +674,27 @@ class TreeVisualizer:
 
     def draw(self) -> None:
         """
-        Run the complete visualization pipeline and render loop.
+                Run the complete visualization pipeline and render loop.
+        f
+                This method orchestrates the full rendering process from raw input
+                data to on-screen visualization. It performs the following steps:
 
-        This method orchestrates the full rendering process from raw input
-        data to on-screen visualization. It performs the following steps:
+                1. Measure the entire tree to determine node and subtree sizes.
+                2. Assign screen positions to all nodes based on measured sizes.
+                3. Enter the main render loop:
+                   - Handle window and quit events.
+                   - Clear the screen using the background color.
+                   - Draw the entire tree using precomputed layout data.
+                   - Update the display.
 
-        1. Measure the entire tree to determine node and subtree sizes.
-        2. Assign screen positions to all nodes based on measured sizes.
-        3. Enter the main render loop:
-           - Handle window and quit events.
-           - Clear the screen using the background color.
-           - Draw the entire tree using precomputed layout data.
-           - Update the display.
-
-        The measurement and positioning phases are executed once, while
-        drawing is repeated every frame.
+                The measurement and positioning phases are executed once, while
+                drawing is repeated every frame.
         """
-
-        measured_tree = self._measure_tree(self.data)
-
-        if self.v_stack_leafs and self.align_v_stack:
-            self._apply_vstack_alignment(measured_tree)
-
-        root_position = Position(x=self.window_width // 2, y=self.window_height // 6)
-        self._assign_positions(measured_tree, root_position)
-
-        export_dict_to_json(data=measured_tree, path=self.data_export_file_path)
+        self._update_tree_layout()
+        export_dict_to_json(data=self.measured_tree, path=self.data_export_file_path)
 
         while True:
             self._handle_events()
             self.screen.fill(self.background_color)
-            self._draw_tree(measured_tree)
+            self._draw_tree(self.measured_tree)
             pg.display.flip()

@@ -3,7 +3,7 @@
 import yaml
 
 from pathlib import Path
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, confloat, ConfigDict
 
 from src.tree_scaper.constants import CONFIG_PATH
 
@@ -29,6 +29,9 @@ class ConfigModel(ConfiguredBaseModel):
         vertical leaf stack (including the parent node).
         """
 
+        dark_mode: bool
+        """Whether to display the tree visualization in dark mode."""
+
     class Window(ConfiguredBaseModel):
         """Window configuration for the visualization canvas."""
 
@@ -38,6 +41,21 @@ class ConfigModel(ConfiguredBaseModel):
         scroll_speed_horizontal: int
         scroll_speed_vertical: int
 
+    class Font(ConfiguredBaseModel):
+        """Font configuration for node text."""
+
+        size: int
+        min_size: int
+        name: str
+
+    class Zoom(ConfiguredBaseModel):
+        """Parameters related to zooming."""
+
+        start_level: float
+        min_level: float
+        max_level: float
+        zoom_factor: float
+
     class NodeSize(ConfiguredBaseModel):
         """Sizing and spacing configuration for tree nodes."""
 
@@ -46,11 +64,11 @@ class ConfigModel(ConfiguredBaseModel):
         margin_x: int
         margin_y: int
 
-    class Font(ConfiguredBaseModel):
-        """Font configuration for node text."""
+    class RootNodePosition(ConfiguredBaseModel):
+        """Defining root node position."""
 
-        name: str
-        size: int
+        x: confloat(ge=0, le=1)  # type: ignore
+        y: confloat(ge=0, le=1)  # type: ignore
 
     class Layout(ConfiguredBaseModel):
         """Layout configuration for tree spacing."""
@@ -66,19 +84,38 @@ class ConfigModel(ConfiguredBaseModel):
         black: list[int]
 
     class ColorPalettes(ConfiguredBaseModel):
-        green: list[list[int]]
-        red: list[list[int]]
-        blue: list[list[int]]
-        purple: list[list[int]]
-        teal: list[list[int]]
-        orange: list[list[int]]
-        brown: list[list[int]]
-        slate: list[list[int]]
+        """ """
+
+        class LightPalettes(ConfiguredBaseModel):
+            """ """
+
+            green: list[list[int]]
+            red: list[list[int]]
+            blue: list[list[int]]
+            purple: list[list[int]]
+            teal: list[list[int]]
+            orange: list[list[int]]
+            brown: list[list[int]]
+            slate: list[list[int]]
+
+        class DarkPalettes(ConfiguredBaseModel):
+            """ """
+
+            yellow: list[list[int]]
+            amber: list[list[int]]
+            gold: list[list[int]]
+            mustard: list[list[int]]
+            olive: list[list[int]]
+
+        light: LightPalettes
+        dark: DarkPalettes
 
     runtime: Runtime
     window: Window
-    node_size: NodeSize
     font: Font
+    zoom: Zoom
+    node_size: NodeSize
+    root_node_position: RootNodePosition
     layout: Layout
     colors: Colors
     color_palettes: ColorPalettes
