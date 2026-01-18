@@ -91,7 +91,7 @@ class TreeVisualizer:
         # Create and set fonts.
         self.font_top: pg.font.Font
         self.font_bottom: pg.font.Font
-        self._update_zoom_parameters()
+        self._recompute_zoom_dependent_state()
 
         # Initialize window
         self.screen = self._init_pg_window()
@@ -130,7 +130,7 @@ class TreeVisualizer:
             self.leaf_background_color = self.config.colors.gray
             self.color_levels = self.config.color_palettes.dark.yellow
 
-    def _update_zoom_parameters(self) -> None:
+    def _recompute_zoom_dependent_state(self) -> None:
         """Update zoom-dependent parameters like fonts and node metrics."""
         scaled_size = max(self.min_font_size, int(self.base_font_size * self.zoom))
         self.font_top = pg.font.SysFont(self.font_name, scaled_size)
@@ -177,7 +177,7 @@ class TreeVisualizer:
             return
 
         self.zoom = new_zoom
-        self._update_zoom_parameters()
+        self._recompute_zoom_dependent_state()
         self._update_tree_layout()
 
     def _handle_events(self) -> None:
