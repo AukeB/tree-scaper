@@ -21,10 +21,7 @@ class ConfigModel(ConfiguredBaseModel):
     class Runtime(ConfiguredBaseModel):
         """Runtime behavior flags controlling visualization logic."""
 
-        v_stack_level: Literal[
-            0,
-            1,
-        ]
+        v_stack_level: Literal[0, 1]
 
         align_v_stack: bool
         """
