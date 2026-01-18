@@ -1,7 +1,7 @@
 runtime: # See src/tree_scaper/config_manager for the runtime parameter explanations.
-  v_stack_leafs: True
-  align_v_stack: True
-  dark_mode: False
+  v_stack_level: 2
+  align_v_stack: False
+  dark_mode: True
 
 window:
   name: "Tree visualization"

@@ -32,7 +32,7 @@ class TreeVisualizer:
         self.max_depth: int = self._get_max_depth(self.tree)
 
         # Runtime / behavior
-        self.v_stack_leafs = self.config.runtime.v_stack_leafs
+        self.v_stack_level = self.config.runtime.v_stack_level
         self.align_v_stack = self.config.runtime.align_v_stack
         self.dark_mode = self.config.runtime.dark_mode
 
@@ -164,7 +164,7 @@ class TreeVisualizer:
         """Measure, align, and assign positions for the current tree."""
         self.measured_tree = self._measure_tree(self.tree)
 
-        if self.v_stack_leafs and self.align_v_stack:
+        if self.v_stack_level > 0 and self.align_v_stack:
             self._apply_vstack_alignment(self.measured_tree)
 
         self._assign_positions(self.measured_tree, self.root_node_position)
@@ -296,13 +296,21 @@ class TreeVisualizer:
 
         # Determine whether this node has only leaf children
         if measured_branches:
-            leaves_only = self.v_stack_leafs and all(
-                not child.get("branches") for child in measured_branches
-            )
+            leaves_only = all(not child.get("branches") for child in measured_branches)
         else:
             leaves_only = False
 
-        if measured_branches and not leaves_only:
+        children_are_leaf_parents = measured_branches and all(
+            child["_measured"].get("leaves_only", False) for child in measured_branches
+        )
+
+        v_stack_applied = 0
+        if self.v_stack_level >= 2 and children_are_leaf_parents:
+            v_stack_applied = 2
+        elif self.v_stack_level >= 1 and leaves_only:
+            v_stack_applied = 1
+
+        if measured_branches and v_stack_applied == 0:
             total_width = sum(
                 branch_node["_measured"]["subtree_width"]
                 for branch_node in measured_branches
@@ -319,7 +327,7 @@ class TreeVisualizer:
                     for branch_node in measured_branches
                 )
             )
-        elif measured_branches and leaves_only:
+        elif measured_branches and v_stack_applied == 1:
             max_child_width = max(
                 child["_measured"]["width"] for child in measured_branches
             )
@@ -329,6 +337,17 @@ class TreeVisualizer:
                 child["_measured"]["height"] for child in measured_branches
             ) + self.vertical_spacing * (len(measured_branches) - 1)
             total_height = node_height + self.vertical_spacing + children_height
+        elif measured_branches and v_stack_applied == 2:
+            total_width = max(
+                node_width,
+                max(
+                    branch["_measured"]["subtree_width"] for branch in measured_branches
+                ),
+            )
+            children_total_height = sum(
+                branch["_measured"]["subtree_height"] for branch in measured_branches
+            ) + self.vertical_spacing * (len(measured_branches) - 1)
+            total_height = node_height + self.vertical_spacing + children_total_height
         else:
             total_width = node_width
             total_height = node_height
@@ -345,6 +364,8 @@ class TreeVisualizer:
                 "subtree_height": total_height,
                 "position": None,
                 "leaves_only": leaves_only,
+                "v_stack_applied": v_stack_applied,
+                "suppress_connectors": (v_stack_applied in (1, 2)),
             },
             "branches": measured_branches,
         }
@@ -446,26 +467,12 @@ class TreeVisualizer:
         """
         measured_tree["_measured"]["position"] = (position.x, position.y)
         branches = measured_tree.get("branches", [])
+        vstack_mode = measured_tree["_measured"].get("v_stack_applied", 0)
 
         if not branches:
             return
 
-        if measured_tree["_measured"]["leaves_only"]:
-            x_parent, y_parent = measured_tree["_measured"]["position"]
-            parent_height = measured_tree["_measured"]["height"]
-            parent_bottom = y_parent + parent_height // 2
-
-            y_cursor = parent_bottom + self.vertical_spacing
-
-            for child in branches:
-                child_height = child["_measured"]["height"]
-                child_center_y = y_cursor + child_height // 2
-                child_center_x = x_parent
-
-                self._assign_positions(child, Position(child_center_x, child_center_y))
-
-                y_cursor = child_center_y + child_height // 2 + self.vertical_spacing
-        else:
+        if vstack_mode == 0:
             total_width = sum(
                 branch_node["_measured"]["subtree_width"] for branch_node in branches
             ) + self.horizontal_spacing * (len(branches) - 1)
@@ -488,6 +495,35 @@ class TreeVisualizer:
                     branch_node, Position(branch_node_x, branch_node_y)
                 )
                 current_x += branch_node_w + self.horizontal_spacing
+
+        elif vstack_mode == 1:
+            x_parent, y_parent = measured_tree["_measured"]["position"]
+            parent_height = measured_tree["_measured"]["height"]
+            parent_bottom = y_parent + parent_height // 2
+
+            y_cursor = parent_bottom + self.vertical_spacing
+
+            for child in branches:
+                child_height = child["_measured"]["height"]
+                child_center_y = y_cursor + child_height // 2
+                child_center_x = x_parent
+
+                self._assign_positions(child, Position(child_center_x, child_center_y))
+
+                y_cursor = child_center_y + child_height // 2 + self.vertical_spacing
+
+        elif vstack_mode == 2:
+            x_parent, y_parent = measured_tree["_measured"]["position"]
+            parent_height = measured_tree["_measured"]["height"]
+            parent_bottom = y_parent + parent_height // 2
+
+            y_cursor = parent_bottom + self.vertical_spacing
+            for child in branches:
+                child_subtree_h = child["_measured"]["subtree_height"]
+                child_center_y = y_cursor + child_subtree_h // 2
+                child_center_x = x_parent
+                self._assign_positions(child, Position(child_center_x, child_center_y))
+                y_cursor += child_subtree_h + self.vertical_spacing
 
     def _draw_node(self, node_data: dict, node_color: list[int]) -> None:
         """
@@ -588,7 +624,7 @@ class TreeVisualizer:
         if not branches:
             return
 
-        if measured_tree["_measured"]["leaves_only"]:
+        if measured_tree["_measured"].get("suppress_connectors"):
             return
 
         height = measured_tree["_measured"]["height"]

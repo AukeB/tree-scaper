@@ -2,6 +2,7 @@
 
 import yaml
 
+from typing import Literal
 from pathlib import Path
 from pydantic import BaseModel, confloat, ConfigDict
 
@@ -20,8 +21,10 @@ class ConfigModel(ConfiguredBaseModel):
     class Runtime(ConfiguredBaseModel):
         """Runtime behavior flags controlling visualization logic."""
 
-        v_stack_leafs: bool
-        """Stack leaf-only child nodes vertically instead of horizontally."""
+        v_stack_level: Literal[
+            0,
+            1,
+        ]
 
         align_v_stack: bool
         """
