@@ -1,12 +1,12 @@
 runtime: # See src/tree_scaper/config_manager for the runtime parameter explanations.
   v_stack_leafs: True
   align_v_stack: True
-  dark_mode: False
+  dark_mode: True
 
 window:
   name: "Tree visualization"
-  width: 5020 # Number of pixels.
-  height: 2780 # Number of pixels.
+  width: 1080 # Number of pixels.
+  height: 740 # Number of pixels.
   scroll_speed_horizontal: 200 # Number of pixels moved with a single scroll.
   scroll_speed_vertical: 100 # Number of pixels moved with a single scroll.
 
