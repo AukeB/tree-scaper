@@ -1,10 +1,10 @@
 """Module for loading the configuration files."""
 
-import yaml
-
-from typing import Literal
 from pathlib import Path
-from pydantic import BaseModel, confloat, ConfigDict
+from typing import Literal
+
+import yaml
+from pydantic import BaseModel, ConfigDict, confloat
 
 from src.tree_scaper.constants import CONFIG_PATH
 
@@ -127,7 +127,7 @@ class ConfigManager:
     be used throughout the application.
     """
 
-    def __init__(self, config_path: Path = CONFIG_PATH):
+    def __init__(self, config_path: Path = CONFIG_PATH) -> None:
         """
         Initialize the ConfigManager with a configuration file path.
 

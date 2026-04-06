@@ -1,8 +1,9 @@
 """Module for visualizing tree structures using PyGame."""
 
 import pygame as pg
-from src.tree_scaper.constants import Position, DATA_PATH
+
 from src.tree_scaper.config_manager import ConfigModel
+from src.tree_scaper.constants import DATA_PATH, Position
 from src.tree_scaper.utils import export_dict_to_json
 
 

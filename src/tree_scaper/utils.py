@@ -1,7 +1,7 @@
 """Module for general utility functions."""
 
-import re
 import json
+import re
 from pathlib import Path
 
 

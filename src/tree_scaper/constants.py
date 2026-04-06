@@ -1,7 +1,7 @@
 """Module for storing project constants."""
 
-from pathlib import Path
 from collections import namedtuple
+from pathlib import Path
 
 Position = namedtuple("Position", "x y")
 

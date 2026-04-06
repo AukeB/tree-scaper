@@ -13,8 +13,8 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "mypy>=1.19.1",
     "ruff>=0.14.11",
+    "ty>=0.0.29",
 ]
 
 [[tool.mypy.overrides]]
@@ -23,3 +23,12 @@ follow_untyped_imports = true
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
+
+[tool.ruff.lint]
+select = [
+    "I",    # isort-style import sorting
+    "ANN",  # annotation rules
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
