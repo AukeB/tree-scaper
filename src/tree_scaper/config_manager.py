@@ -24,9 +24,8 @@ class ConfigModel(ConfiguredBaseModel):
         v_stack_level: Literal[0, 1]
 
         align_v_stack: bool
-        """
-        If ``v_stack_leafs`` is enabled, enforce equal widths for the entire
-        vertical leaf stack (including the parent node).
+        """If ``v_stack_leafs`` is enabled, enforce equal widths for the entire vertical
+        leaf stack (including the parent node).
         """
 
         dark_mode: bool
@@ -83,10 +82,10 @@ class ConfigModel(ConfiguredBaseModel):
         black: list[int]
 
     class ColorPalettes(ConfiguredBaseModel):
-        """ """
+        """"""
 
         class LightPalettes(ConfiguredBaseModel):
-            """ """
+            """"""
 
             green: list[list[int]]
             red: list[list[int]]
@@ -98,7 +97,7 @@ class ConfigModel(ConfiguredBaseModel):
             slate: list[list[int]]
 
         class DarkPalettes(ConfiguredBaseModel):
-            """ """
+            """"""
 
             yellow: list[list[int]]
             amber: list[list[int]]
@@ -119,17 +118,15 @@ class ConfigModel(ConfiguredBaseModel):
 
 
 class ConfigManager:
-    """
-    Load and parse application configuration files.
+    """Load and parse application configuration files.
 
-    This class is responsible for reading a configuration file from disk
-    and converting it into a strongly typed ConfigModel instance that can
-    be used throughout the application.
+    This class is responsible for reading a configuration file from disk and converting
+    it into a strongly typed ConfigModel instance that can be used throughout the
+    application.
     """
 
     def __init__(self, config_path: Path = CONFIG_PATH) -> None:
-        """
-        Initialize the ConfigManager with a configuration file path.
+        """Initialize the ConfigManager with a configuration file path.
 
         Args:
             config_path (Path): Path to the configuration YAML file.
@@ -137,12 +134,11 @@ class ConfigManager:
         self.config_path = config_path
 
     def load_config_file(self) -> ConfigModel:
-        """
-        Load and validate the configuration file.
+        """Load and validate the configuration file.
 
-        This method reads the YAML configuration file from disk, parses its
-        contents into a dictionary, and instantiates a ConfigModel from it.
-        Validation is handled implicitly by the ConfigModel constructor.
+        This method reads the YAML configuration file from disk, parses its contents
+        into a dictionary, and instantiates a ConfigModel from it. Validation is handled
+        implicitly by the ConfigModel constructor.
 
         Returns:
             ConfigModel: Parsed and validated configuration object.

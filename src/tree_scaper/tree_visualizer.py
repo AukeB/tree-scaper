@@ -11,13 +11,12 @@ class TreeVisualizer:
     """Visualizes hierarchical tree structures using PyGame."""
 
     def __init__(self, tree_data: dict, config: ConfigModel) -> None:
-        """
-        Initializes the TreeVisualizer with data and configuration.
+        """Initializes the TreeVisualizer with data and configuration.
 
         Args:
             data (dict): The hierarchical data to visualize.
-            config (ConfigModel): Pydantic config containing display, node,
-                layout, and color properties.
+            config (ConfigModel): Pydantic config containing display, node, layout, and
+                color properties.
         """
         # Refactor.
         # Maybe extract the parameters that are used a lot throughout the code
@@ -98,11 +97,10 @@ class TreeVisualizer:
         self.screen = self._init_pg_window()
 
     def _get_max_depth(self, node: dict, level: int = 0) -> int:
-        """
-        Recursively compute the maximum depth of a tree.
+        """Recursively compute the maximum depth of a tree.
 
-        The root node is considered level 0. Each recursive descent into
-        a child branch increases the level by 1.
+        The root node is considered level 0. Each recursive descent into a child branch
+        increases the level by 1.
 
         Args:
             node (dict): Current node in the tree.
@@ -119,7 +117,7 @@ class TreeVisualizer:
         return max(self._get_max_depth(child, level + 1) for child in branches)
 
     def _set_colors(self) -> None:
-        """ """
+        """"""
         if not self.dark_mode:
             self.text_color = self.config.colors.black
             self.background_color = self.config.colors.white
@@ -150,8 +148,7 @@ class TreeVisualizer:
         )
 
     def _init_pg_window(self) -> pg.Surface:
-        """
-        Initializes the PyGame display window.
+        """Initializes the PyGame display window.
 
         Returns:
             pg.Surface: The pygame screen surface.
@@ -182,9 +179,7 @@ class TreeVisualizer:
         self._update_tree_layout()
 
     def _handle_events(self) -> None:
-        """
-        Handles pygame events, including quitting the application.
-        """
+        """Handles pygame events, including quitting the application."""
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -207,27 +202,27 @@ class TreeVisualizer:
                     self.scroll_y += event.y * self.scroll_speed_vertical
 
     def _measure_node(self, node_data: dict) -> tuple[int, int, int, int]:
-        """
-        Compute the pixel size required to render a single node.
+        """Compute the pixel size required to render a single node.
 
-        This method measures how much space a node needs based on its textual
-        content and layout configuration. The process is as follows:
+        This method measures how much space a node needs based on its textual content
+        and layout configuration. The process is as follows:
 
         1. Split the node's title and subtitle into separate text lines.
         2. Render each line using the configured pygame fonts.
         3. Measure the width of every rendered text surface.
-        4. Determine the node width as the maximum text width plus horizontal
-           padding, while enforcing a minimum node width.
-        5. Compute the height of the title and subtitle sections separately by
-           summing their text heights and adding vertical padding.
+        4. Determine the node width as the maximum text width plus horizontal padding,
+           while enforcing a minimum node width.
+        5. Compute the height of the title and subtitle sections separately by summing
+           their text heights and adding vertical padding.
         6. Combine the title and subtitle heights into the final node height.
 
         Args:
-            node_data (dict): A node dictionary containing 'title' and
-                'subtitle' text fields.
+            node_data (dict): A node dictionary containing 'title' and 'subtitle' text
+                fields.
 
         Returns:
-            tuple[int, int, int, int]: The computed (width, height) of the node in pixels.
+            tuple[int, int, int, int]: The computed (width, height) of the node in
+                pixels.
         """
         title_lines = node_data["title"].split("\n")
         subtitle_lines = node_data["subtitle"].split("\n")
@@ -258,34 +253,29 @@ class TreeVisualizer:
         return width, height, top_height, bottom_height
 
     def _measure_tree(self, node_data: dict) -> dict:
-        """
-        Recursively measure a tree and compute layout metadata.
+        """Recursively measure a tree and compute layout metadata.
 
-        This method traverses the tree structure depth-first and constructs a
-        new tree containing layout measurements for every node. The process is
-        as follows:
+        This method traverses the tree structure depth-first and constructs a new tree
+        containing layout measurements for every node. The process is as follows:
 
         1. Measure the visual size of the current node using measure_node.
         2. Recursively call _measure_tree on each branch (child node).
-        3. If the node has branches:
-           - Sum the subtree widths of all branches.
-           - Add horizontal spacing between sibling subtrees.
-           - Compute the subtree height as the node height plus vertical
-             spacing and the maximum child subtree height.
+        3. If the node has branches: - Sum the subtree widths of all branches. - Add
+           horizontal spacing between sibling subtrees. - Compute the subtree height as
+           the node height plus vertical spacing and the maximum child subtree height.
         4. If the node has no branches, its subtree size equals its own size.
-        5. Create a new node dictionary that:
-           - Copies the original node data.
-           - Replaces 'branches' with the measured branch nodes.
-           - Attaches a '_measured' dictionary containing size and layout
-             metadata used for positioning and rendering.
+        5. Create a new node dictionary that: - Copies the original node data. -
+           Replaces 'branches' with the measured branch nodes. - Attaches a '_measured'
+           dictionary containing size and layout metadata used for positioning and
+           rendering.
 
         Args:
-            node_data (dict): A node dictionary that may contain a 'branches'
-                list of child nodes.
+            node_data (dict): A node dictionary that may contain a 'branches' list of
+                child nodes.
 
         Returns:
-            dict: A new tree structure augmented with '_measured' layout data
-                for each node.
+            dict: A new tree structure augmented with '_measured' layout data for each
+                node.
         """
         node_width, node_height, top_height, bottom_height = self._measure_node(
             node_data
@@ -374,14 +364,13 @@ class TreeVisualizer:
         return measured_node
 
     def _apply_vstack_alignment(self, measured_tree: dict) -> None:
-        """
-        Post-process measured tree to align widths for vertical leaf stacks.
+        """Post-process measured tree to align widths for vertical leaf stacks.
 
         This walks the measured tree bottom-up. For nodes marked as
-        '_measured.leaves_only', it makes the parent and all direct leaf
-        children share the same width (the maximum of their current widths).
-        It also recomputes subtree_width and subtree_height for each node so
-        ancestor measurements remain correct.
+        '_measured.leaves_only', it makes the parent and all direct leaf children share
+        the same width (the maximum of their current widths). It also recomputes
+        subtree_width and subtree_height for each node so ancestor measurements remain
+        correct.
 
         This method mutates the measured_tree in-place.
         """
@@ -434,37 +423,34 @@ class TreeVisualizer:
             )
 
     def _assign_positions(self, measured_tree: dict, position: Position) -> None:
-        """
-        Assign screen positions to all nodes in a measured tree.
+        """Assign screen positions to all nodes in a measured tree.
 
-        This method performs a second recursive traversal over the tree after
-        all size measurements have been completed. It relies on the fact that
-        every node already contains accurate width and height information in
-        its '_measured' metadata.
+        This method performs a second recursive traversal over the tree after all size
+        measurements have been completed. It relies on the fact that every node already
+        contains accurate width and height information in its '_measured' metadata.
 
-        The separation of measurement and positioning is essential, because
-        node positions depend on the total subtree sizes of sibling nodes,
-        which can only be known after measuring the entire tree.
+        The separation of measurement and positioning is essential, because node
+        positions depend on the total subtree sizes of sibling nodes, which can only be
+        known after measuring the entire tree.
 
         The positioning process works as follows:
 
         1. Assign the given (x, y) position to the current node.
-        2. Compute the total horizontal width occupied by all branch subtrees,
-           including horizontal spacing between siblings.
-        3. Determine the starting x-coordinate so the branches are centered
-           below the parent node.
-        4. For each branch:
-           - Compute the branch node's x-position using its subtree width.
-           - Compute the branch node's y-position using the parent's height,
-             vertical spacing, and the branch node's own height.
-           - Recursively assign positions to the branch subtree.
+        2. Compute the total horizontal width occupied by all branch subtrees, including
+           horizontal spacing between siblings.
+        3. Determine the starting x-coordinate so the branches are centered below the
+           parent node.
+        4. For each branch: - Compute the branch node's x-position using its subtree
+           width. - Compute the branch node's y-position using the parent's height,
+           vertical spacing, and the branch node's own height. - Recursively assign
+           positions to the branch subtree.
         5. Continue recursively until all leaf nodes have positions.
 
         Args:
             measured_tree (dict): A tree produced by _measure_tree containing
                 '_measured' layout data for every node.
-            position (Position): The (x, y) position of the current node's
-                center in screen coordinates.
+            position (Position): The (x, y) position of the current node's center in
+                screen coordinates.
         """
         measured_tree["_measured"]["position"] = (position.x, position.y)
         branches = measured_tree.get("branches", [])
@@ -527,14 +513,12 @@ class TreeVisualizer:
                 y_cursor += child_subtree_h + self.vertical_spacing
 
     def _draw_node(self, node_data: dict, node_color: list[int]) -> None:
-        """
-        Render a single node using its precomputed layout data.
+        """Render a single node using its precomputed layout data.
 
-        This method draws a node rectangle split into a top and bottom
-        section, along with a border and text content. All positional and
-        dimensional information is read from the node's '_measured' data,
-        which must already be populated by the measurement and positioning
-        phases.
+        This method draws a node rectangle split into a top and bottom section, along
+        with a border and text content. All positional and dimensional information is
+        read from the node's '_measured' data, which must already be populated by the
+        measurement and positioning phases.
 
         The drawing process follows these steps:
 
@@ -546,12 +530,12 @@ class TreeVisualizer:
         6. Render and blit the title text into the top section.
         7. Render and blit the subtitle text into the bottom section.
 
-        This method does not perform any layout calculations and assumes
-        that all geometry has been finalized beforehand.
+        This method does not perform any layout calculations and assumes that all
+        geometry has been finalized beforehand.
 
         Args:
-            node_data (dict): A measured node containing '_measured' layout
-                data and text fields to render.
+            node_data (dict): A measured node containing '_measured' layout data and
+                text fields to render.
         """
         x, y = node_data["_measured"]["position"]
         x += self.scroll_x
@@ -596,29 +580,27 @@ class TreeVisualizer:
             current_y += surf.get_height()
 
     def _draw_connectors(self, measured_tree: dict, node_color: list[int]) -> None:
-        """
-        Draw orthogonal connector lines between a node and its branches.
+        """Draw orthogonal connector lines between a node and its branches.
 
-        This method renders tree connectors using only horizontal and vertical
-        line segments. For a node with one or more branches, the connectors are
-        drawn in three steps:
+        This method renders tree connectors using only horizontal and vertical line
+        segments. For a node with one or more branches, the connectors are drawn in
+        three steps:
 
-        1. A vertical line extending downward from the bottom center of the
-        parent node.
+        1. A vertical line extending downward from the bottom center of the parent node.
         2. A horizontal junction line spanning across all branch x-positions.
-        3. Individual vertical lines connecting the junction to each branch
-        node's top center.
+        3. Individual vertical lines connecting the junction to each branch node's top
+           center.
 
         This layout ensures visually clean 90-degree connections and clearly
         communicates hierarchical relationships without diagonal lines.
 
-        The method assumes that all branch nodes have already been measured
-        and assigned absolute positions. It performs no layout calculations
-        and relies entirely on '_measured' metadata.
+        The method assumes that all branch nodes have already been measured and assigned
+        absolute positions. It performs no layout calculations and relies entirely on
+        '_measured' metadata.
 
         Args:
-            measured_tree (dict): A measured tree node containing position and
-                dimension data for the parent and all direct branches.
+            measured_tree (dict): A measured tree node containing position and dimension
+                data for the parent and all direct branches.
         """
         branches = measured_tree.get("branches", [])
 
@@ -673,12 +655,11 @@ class TreeVisualizer:
             )
 
     def _draw_tree(self, measured_tree: dict, level: int = 0) -> None:
-        """
-        Recursively draw all nodes and connectors in a measured tree.
+        """Recursively draw all nodes and connectors in a measured tree.
 
-        This method performs a depth-first traversal of a fully measured and
-        positioned tree structure. For each node, it renders both the visual
-        node representation and the orthogonal connector lines to its branches.
+        This method performs a depth-first traversal of a fully measured and positioned
+        tree structure. For each node, it renders both the visual node representation
+        and the orthogonal connector lines to its branches.
 
         The drawing order is:
 
@@ -686,14 +667,13 @@ class TreeVisualizer:
         2. Draw connector lines from the node to its direct branches.
         3. Recursively draw each branch subtree.
 
-        This method assumes that all nodes already have their final width,
-        height, subtree dimensions, and absolute screen positions assigned.
-        It contains no layout or measurement logic and relies entirely on
-        the '_measured' metadata.
+        This method assumes that all nodes already have their final width, height,
+        subtree dimensions, and absolute screen positions assigned. It contains no
+        layout or measurement logic and relies entirely on the '_measured' metadata.
 
         Args:
-            measured_tree (dict): A measured tree structure containing layout
-                and position metadata for every node.
+            measured_tree (dict): A measured tree structure containing layout and
+                position metadata for every node.
             level (int): Depth level in the tree (0=root).
         """
         if level == self.max_depth:
@@ -709,22 +689,19 @@ class TreeVisualizer:
             self._draw_tree(branch_node, level=level + 1)
 
     def draw(self) -> None:
-        """
-        Run the complete visualization pipeline and render loop.
+        """Run the complete visualization pipeline and render loop.
 
-        This method orchestrates the full rendering process from raw input
-        data to on-screen visualization. It performs the following steps:
+        This method orchestrates the full rendering process from raw input data to on-
+        screen visualization. It performs the following steps:
 
         1. Measure the entire tree to determine node and subtree sizes.
         2. Assign screen positions to all nodes based on measured sizes.
-        3. Enter the main render loop:
-            - Handle window and quit events.
-            - Clear the screen using the background color.
-            - Draw the entire tree using precomputed layout data.
-            - Update the display.
+        3. Enter the main render loop: - Handle window and quit events. - Clear the
+           screen using the background color. - Draw the entire tree using precomputed
+           layout data. - Update the display.
 
-        The measurement and positioning phases are executed once, while
-        drawing is repeated every frame.
+        The measurement and positioning phases are executed once, while drawing is
+        repeated every frame.
         """
         self._update_tree_layout()
         export_dict_to_json(data=self.measured_tree, path=self.data_export_file_path)

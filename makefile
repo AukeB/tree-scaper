@@ -7,6 +7,9 @@ ruff:
 	uv run ruff format $(PROJECT_NAME)
 	@echo "🔧 Successfully executed ruff."
 
+docstring:
+	uv run docstring_tailor
+
 # Static type-check code with ty
 ty:
 	uv run ty check
@@ -36,6 +39,7 @@ git:
 # Run full workflow: format, type-check, clean, commit
 all:
 	make ruff
+	make docstring
 	make ty
 	make clean
 	make git

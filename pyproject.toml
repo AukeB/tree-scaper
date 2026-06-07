@@ -13,13 +13,15 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "docstring-tailor>=0.2.0",
     "ruff>=0.14.11",
     "ty>=0.0.29",
 ]
 
-[[tool.mypy.overrides]]
-module = ["yaml.*"]
-follow_untyped_imports = true
+[tool.docstring_tailor]
+line-length = 88
+style = "google"
+detect-lists = true
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
