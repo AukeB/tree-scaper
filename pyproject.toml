@@ -5,7 +5,6 @@ description = "Repository for visualizing tree and forest structures with hierar
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "logging>=0.4.9.6",
     "pydantic>=2.12.5",
     "pygame>=2.6.1",
     "pyyaml>=6.0.3",
@@ -13,24 +12,49 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "docstring-tailor>=0.2.0",
+    "deptry>=0.25.1",
+    "docstring-tailor>=0.4.1",
+    "pyright>=1.1.414",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.1.0",
     "ruff>=0.14.11",
     "ty>=0.0.29",
 ]
+
+# Build system and backend.
+
+[build-system]
+requires = ["uv_build>=0.8.13,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "tree_scaper"
+module-root = "src"
+
+# Pytest settings.
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+# Dependency checker settings.
+
+[tool.deptry]
+known_first_party = ["tree_scaper"]
+
+# Docstring tailor settings.
 
 [tool.docstring_tailor]
 line-length = 88
 style = "google"
 detect-lists = true
 
-[tool.pytest.ini_options]
-pythonpath = ["."]
+# Ruff settings.
 
 [tool.ruff.lint]
-select = [
-    "I",    # isort-style import sorting
-    "ANN",  # annotation rules
-]
+extend-select = ["I", "ANN"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["src"]
+known-first-party = ["tree_scaper"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN", "I001"]  # tests are not held to annotation rules or import sorting
